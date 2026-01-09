@@ -38,7 +38,7 @@ Collect and analyze GitHub issues across all repositories in the homestak-dev or
 
 Just ask me to gather issues from homestak repos. You can optionally specify:
 1. Filters (labels, state, assignee, milestone)
-2. Output format (summary table, JSON, detailed list)
+2. Output format (JSON if requested)
 3. Specific repos (or I'll check all 9)
 
 ## Examples
@@ -71,12 +71,25 @@ Count open vs closed issues by repository in homestak
 - **milestone**: milestone title
 - **author**: issue creator
 
-## Output formats
+## Execution
 
-- **Summary table** - Quick overview with counts
-- **Detailed list** - All issues with titles, numbers, URLs
-- **JSON** - For further processing or export
-- **By repository** - Grouped view
+Always use the helper script to gather issues (runs all repos in parallel):
+
+```bash
+# Default: open issues
+./.claude/skills/issues/scripts/gather-all-issues.sh
+
+# Closed issues
+./.claude/skills/issues/scripts/gather-all-issues.sh closed
+
+# Filter by label
+./.claude/skills/issues/scripts/gather-all-issues.sh open "bug"
+
+# JSON output
+./.claude/skills/issues/scripts/gather-all-issues.sh open "" json
+```
+
+The script outputs the correct plain text format automatically. Do not make individual `gh` calls per repo.
 
 ## Prerequisites
 
