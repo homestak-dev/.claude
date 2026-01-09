@@ -1,0 +1,6 @@
+{
+  "statusLine": {
+    "type": "command",
+    "command": "/home/jderose/homestak-dev/.claude/statusline.sh"
+  }
+}
