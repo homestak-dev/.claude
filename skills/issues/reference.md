@@ -54,7 +54,7 @@ gh issue list -R homestak-dev/ansible --json number,title,labels | \
 
 ```bash
 # Loop through all repos
-for repo in ansible bootstrap iac-driver packer site-config tofu .github; do
+for repo in ansible bootstrap iac-driver packer site-config tofu .claude .github homestak-dev; do
   echo "=== $repo ==="
   gh issue list -R "homestak-dev/$repo" --state open
 done
@@ -66,7 +66,7 @@ done
 
 ```bash
 # Get all open issues created in the last 7 days
-for repo in ansible bootstrap iac-driver packer site-config tofu .github; do
+for repo in ansible bootstrap iac-driver packer site-config tofu .claude .github homestak-dev; do
   gh issue list -R "homestak-dev/$repo" --state open \
     --json number,title,createdAt,url | \
     jq --arg since "$(date -d '7 days ago' +%Y-%m-%d)" \
@@ -78,7 +78,7 @@ done
 
 ```bash
 # Find all high-priority issues
-for repo in ansible bootstrap iac-driver packer site-config tofu .github; do
+for repo in ansible bootstrap iac-driver packer site-config tofu .claude .github homestak-dev; do
   gh issue list -R "homestak-dev/$repo" --label "priority:high,critical"
 done
 ```
@@ -88,13 +88,13 @@ done
 ```bash
 # Count issues by state
 echo "Open issues:"
-for repo in ansible bootstrap iac-driver packer site-config tofu .github; do
+for repo in ansible bootstrap iac-driver packer site-config tofu .claude .github homestak-dev; do
   count=$(gh issue list -R "homestak-dev/$repo" --state open --json number | jq 'length')
   echo "  $repo: $count"
 done
 
 echo "Closed issues (last 30 days):"
-for repo in ansible bootstrap iac-driver packer site-config tofu .github; do
+for repo in ansible bootstrap iac-driver packer site-config tofu .claude .github homestak-dev; do
   count=$(gh issue list -R "homestak-dev/$repo" --state closed \
     --json closedAt | \
     jq --arg since "$(date -d '30 days ago' +%Y-%m-%d)" \
@@ -140,7 +140,7 @@ Total: 37 issues
 You can set these in your shell profile for convenience:
 
 ```bash
-export HOMESTAK_REPOS="ansible bootstrap iac-driver packer site-config tofu .github"
+export HOMESTAK_REPOS="ansible bootstrap iac-driver packer site-config tofu .claude .github homestak-dev"
 export HOMESTAK_ORG="homestak-dev"
 ```
 

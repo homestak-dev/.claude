@@ -11,7 +11,9 @@ REPOS=(
   "homestak-dev/packer"
   "homestak-dev/site-config"
   "homestak-dev/tofu"
+  "homestak-dev/.claude"
   "homestak-dev/.github"
+  "homestak-dev/homestak-dev"
 )
 
 STATE="${1:-open}"
