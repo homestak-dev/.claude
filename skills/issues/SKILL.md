@@ -16,14 +16,15 @@ Collect and analyze GitHub issues across all repositories in the homestak-dev or
 
 ## Repositories Covered
 
+- .claude
+- .github
 - ansible
 - bootstrap
+- homestak-dev
 - iac-driver
 - packer
 - site-config
 - tofu
-- .github
-- .github-repo
 
 ## When to use this Skill
 
@@ -38,7 +39,7 @@ Collect and analyze GitHub issues across all repositories in the homestak-dev or
 Just ask me to gather issues from homestak repos. You can optionally specify:
 1. Filters (labels, state, assignee, milestone)
 2. Output format (summary table, JSON, detailed list)
-3. Specific repos (or I'll check all 8)
+3. Specific repos (or I'll check all 9)
 
 ## Examples
 
@@ -88,7 +89,7 @@ If not authenticated, use `gh auth login`.
 
 ## Tips
 
-- Default behavior is to check all 8 repos for open issues
+- Default behavior is to check all 9 repos for open issues
 - Use labels to filter by priority or type
 - Combine with date filters for weekly/monthly reviews
 - Export to JSON for custom analysis
