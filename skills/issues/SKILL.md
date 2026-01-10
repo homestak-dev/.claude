@@ -100,6 +100,14 @@ gh auth status
 
 If not authenticated, use `gh auth login`.
 
+## Output Guidelines
+
+- **Present the script output directly** - do not summarize, group, or roll up the data
+- **No additional tables** - the script output is the final format, do not create markdown tables
+- **No table borders** - if you must create a table, never use borders (waste of space)
+- **No unsolicited analysis** - only add commentary if the user explicitly asks for it
+- **Preserve the format** - the script's plain text table format is intentional and preferred
+
 ## Tips
 
 - Default behavior is to check all 9 repos for open issues
