@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [v0.16] - 2026-01-11
+
+- Release alignment with homestak v0.16
+
 ## [v0.13] - 2026-01-10
 
 - Release alignment with homestak-dev v0.13
