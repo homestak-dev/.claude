@@ -2,7 +2,9 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased]
+## [v0.24] - 2026-01-16
+
+- Release alignment with homestak v0.24
 
 ## [v0.18] - 2026-01-13
 
