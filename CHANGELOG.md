@@ -1,5 +1,19 @@
 # Changelog
 
+## Unreleased
+
+## v0.34 - 2026-01-19
+
+### Added
+- Add 13 lifecycle skills covering all development phases (#129, #130)
+  - Planning: `/planning-init`, `/planning-deps`, `/planning-conflicts`
+  - Validation: `/validate-prereqs`, `/validate-run`
+  - Merge: `/merge-pr`
+  - Release: `/release-preflight`, `/release-changelog`, `/release-validate`, `/release-tag`, `/release-publish`, `/release-verify`, `/release-housekeeping`
+
+### Changed
+- Update CLAUDE.md with complete skill documentation and usage examples
+
 ## v0.26 - 2026-01-17
 
 - Release alignment with homestak v0.26
