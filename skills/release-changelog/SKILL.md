@@ -146,7 +146,9 @@ Always include issue reference: `(#123)`
 
 ## Notes
 
-- Don't commit yet - changes will be committed with tags
+- **Commit and push before tagging** - The tag command requires clean working trees
+  - After editing CHANGELOGs: `git add */CHANGELOG.md && git commit -m "docs: Update CHANGELOGs for vX.Y"`
+  - Push to each repo before proceeding to `/release-tag`
 - Repos with no Unreleased content are skipped
 - Empty Unreleased section is intentional (ready for next release)
 - Use Edit tool for precise changes (not file overwrites)

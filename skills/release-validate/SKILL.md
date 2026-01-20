@@ -95,6 +95,27 @@ EOF
 |----------|-------------|----------|
 | `vm-roundtrip` | Default, most releases | ~2 min |
 | `nested-pve-roundtrip` | PVE install changes, full stack | ~9 min |
+| Skip validation | Non-functional changes only | 0 min |
+
+### Non-Functional Changes Pattern
+
+When release scope is **purely non-functional** (test infrastructure, lint fixes, documentation only), validation can be skipped with explicit acknowledgment:
+
+**Criteria for skipping:**
+- No changes to iac-driver scenarios or actions
+- No changes to tofu modules or environments
+- No changes to ansible playbooks or roles
+- No changes to packer templates
+- No changes to bootstrap install process
+- Changes limited to: test files, lint configs, documentation, CLAUDE.md
+
+**How to skip:**
+```bash
+# Tag command will block - use --force with explicit reason
+./scripts/release.sh tag --execute --force
+```
+
+**In the AAR, document:** "Validation skipped: scope limited to test/lint/docs changes"
 
 ## Output Format
 
