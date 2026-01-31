@@ -49,14 +49,26 @@ fi
 **Using release.sh (recommended):**
 
 ```bash
+# Standard validation (most releases)
 ./scripts/release.sh validate --scenario vm-roundtrip --host father
+
+# Recursive validation (manifest/recursive changes)
+./scripts/release.sh validate --scenario recursive-pve-roundtrip --manifest n1-basic --host father
+
+# Full nested validation (PVE/nested/packer changes)
+./scripts/release.sh validate --scenario recursive-pve-roundtrip --manifest n2-quick --host father
 ```
 
 **Manual execution:**
 
 ```bash
 cd iac-driver
+
+# Standard
 ./run.sh --scenario vm-roundtrip --host father --verbose
+
+# With manifest
+./run.sh --scenario recursive-pve-roundtrip --manifest n1-basic --host father --verbose
 ```
 
 ### Step 3: Check Results
@@ -91,11 +103,21 @@ EOF
 
 ## Validation Scenarios
 
-| Scenario | When to Use | Duration |
-|----------|-------------|----------|
-| `vm-roundtrip` | Default, most releases | ~2 min |
-| `nested-pve-roundtrip` | PVE install changes, full stack | ~9 min |
-| Skip validation | Non-functional changes only | 0 min |
+Select the validation scenario based on release scope:
+
+| Release Scope | Scenario | Duration |
+|---------------|----------|----------|
+| No IaC changes | `vm-roundtrip` | ~2 min |
+| Tofu/ansible changes | `vm-roundtrip` | ~2 min |
+| Recursive/manifest changes | `recursive-pve-roundtrip --manifest n1-basic` | ~3 min |
+| PVE/nested/packer changes | `recursive-pve-roundtrip --manifest n2-quick` | ~9 min |
+| Non-functional only | Skip validation | 0 min |
+
+**Decision process:**
+1. Identify which repos have changes
+2. If iac-driver recursive/manifest code changed → use `recursive-pve-roundtrip --manifest n1-basic`
+3. If packer/ansible/nested-pve changed → use `recursive-pve-roundtrip --manifest n2-quick`
+4. Otherwise → use `vm-roundtrip` (default)
 
 ### Non-Functional Changes Pattern
 
@@ -158,5 +180,7 @@ When release scope is **purely non-functional** (test infrastructure, lint fixes
 
 - Validation is a hard gate - do not proceed to tagging if it fails
 - Always attach report to release issue for audit trail
-- vm-roundtrip is sufficient for most releases
-- Use nested-pve-roundtrip when PVE installation is in scope
+- `vm-roundtrip` is sufficient for most releases (tofu/ansible changes)
+- Use `recursive-pve-roundtrip --manifest n1-basic` when manifest/recursive code changes
+- Use `recursive-pve-roundtrip --manifest n2-quick` when PVE/nested/packer changes
+- See `docs/lifecycle/60-release.md` Phase 3 for authoritative guidance
