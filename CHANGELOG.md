@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+### Changed
+- Update `/release-validate` skill with manifest-based scenario selection (#3)
+  - Add `recursive-pve-roundtrip --manifest n1-basic` for recursive/manifest changes
+  - Add `recursive-pve-roundtrip --manifest n2-quick` for PVE/nested/packer changes
+  - Add decision process matching `docs/lifecycle/60-release.md` Phase 3
+
 ## v0.34 - 2026-01-19
 
 ### Added
