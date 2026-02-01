@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Added
+- Add phase doc loading guidance to sprint skill (#165)
+- Add `--all` flag to `/sprint merge` for multi-repo sprints (#167)
+
 ## v0.43 - 2026-02-01
 
 - Release alignment with homestak v0.43

@@ -36,7 +36,7 @@ Manage sprint lifecycle with subcommands:
 /sprint init [branch-name|issue#]
 /sprint validate [--scenario <name>] [--host <host>] [--prereqs-only]
 /sprint sync
-/sprint merge [--execute]
+/sprint merge [--execute] [--all]
 /sprint close
 ```
 
@@ -184,21 +184,41 @@ Create PRs for sprint branches with proper formatting.
 
 **Inputs:**
 - `--execute`: Also merge the PRs (requires approval)
+- `--all`: Create PRs in all repos listed in sprint issue
 
 **Actions:**
 1. **Load context:**
    - Read `docs/lifecycle/50-merge.md` for PR requirements and checklist
-2. Verify branch state (not on master, has commits ahead)
-3. Push branch if needed
-4. Generate PR body with:
+2. If `--all`:
+   a. Fetch current sprint issue (from branch name or prompt)
+   b. Parse `## Repos` section for checked repos
+   c. For each repo with `[x]` branch created:
+      - Navigate to repo directory
+      - Run merge flow (steps 3-6 below)
+   d. Report summary of all PRs created
+3. Verify branch state (not on master, has commits ahead)
+4. Push branch if needed
+5. Generate PR body with:
    - Summary from commits/sprint issue
    - Type of change checkboxes
    - Changes list
    - Testing documentation
    - Linked issues (Closes #N)
    - PR readiness checklist
-5. Create PR with conventional commit title format
-6. If `--execute`: merge after approval
+6. Create PR with conventional commit title format
+7. If `--execute`: merge after approval
+
+**Repo detection for --all:**
+Parse sprint issue body for:
+```markdown
+## Repos
+
+- [x] bootstrap - branch created
+- [x] homestak-dev - branch created
+- [ ] ansible - not created (skip)
+```
+
+Only repos with `[x]` are included.
 
 **PR Title Format:**
 - `fix(<scope>): <summary>` - Bug fixes
@@ -219,8 +239,10 @@ Create PRs for sprint branches with proper formatting.
 
 **Example:**
 ```
-/sprint merge
-/sprint merge --execute
+/sprint merge              # Single repo (current directory)
+/sprint merge --all        # All repos in sprint issue
+/sprint merge --execute    # Create and merge PR
+/sprint merge --all --execute  # All repos, create and merge
 ```
 
 ### close
@@ -238,6 +260,36 @@ Complete sprint wrap-up.
 
 **Example:**
 ```
+/sprint close
+```
+
+## Phase Transitions
+
+After completing each phase, load the next phase's documentation before proceeding:
+
+| After | Before Starting | Load |
+|-------|-----------------|------|
+| `plan` | Design | `docs/lifecycle/20-design.md` |
+| `init` | Design | `docs/lifecycle/20-design.md` |
+| Design approved | Implementation | `docs/lifecycle/30-implementation.md` |
+| Implementation done | Validation | `docs/lifecycle/40-validation.md` |
+| `validate` passed | Merge | `docs/lifecycle/50-merge.md` |
+| `merge` complete | Close | `docs/lifecycle/55-sprint-close.md` |
+
+**Process discipline:** Always read the phase doc before starting that phase. This ensures process requirements are fresh in context.
+
+**Example workflow:**
+```
+/sprint init 163
+→ Read 20-design.md
+→ Complete design, get approval
+→ Read 30-implementation.md
+→ Implement changes
+→ Read 40-validation.md
+/sprint validate
+→ Read 50-merge.md
+/sprint merge
+→ Read 55-sprint-close.md
 /sprint close
 ```
 
