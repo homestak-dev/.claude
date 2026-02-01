@@ -10,23 +10,15 @@ Claude Code configuration for the homestak-dev workspace.
 ├── settings.local.json # Local settings (gitignored)
 ├── statusline.sh       # Custom status line script
 └── skills/
-    ├── sprint/              # Sprint lifecycle (NEW)
-    ├── release/             # Release lifecycle (NEW)
-    ├── session/             # Session management (NEW)
+    ├── sprint/              # Sprint lifecycle
+    ├── release/             # Release lifecycle
+    ├── session/             # Session management
     ├── issues/              # GitHub issue tracking
-    ├── planning-init/       # Release planning (→ /release plan init)
     ├── planning-deps/       # Cross-repo dependency analysis
     ├── planning-conflicts/  # File conflict analysis
     ├── validate-prereqs/    # Validation prerequisites check
     ├── validate-run/        # Run validation scenarios
-    ├── merge-pr/            # Create pull requests
-    ├── release-preflight/   # Release preflight (→ /release execute)
-    ├── release-changelog/   # CHANGELOG updates (→ /release execute)
-    ├── release-validate/    # Release validation (→ /release execute)
-    ├── release-tag/         # Git tag creation (→ /release execute)
-    ├── release-publish/     # GitHub release creation (→ /release execute)
-    ├── release-verify/      # Release verification (→ /release execute)
-    └── release-housekeeping/ # Branch cleanup (→ /release execute)
+    └── merge-pr/            # Create pull requests
 ```
 
 ## Skills
@@ -92,21 +84,6 @@ Gather GitHub issues across repositories.
 | `/validate-prereqs` | 40 | Check validation host readiness |
 | `/validate-run` | 40 | Run iac-driver validation scenario |
 | `/merge-pr` | 50 | Create PR with template and linked issues |
-
-### Legacy Skills (Still Available)
-
-Individual release phase skills remain available but are superseded by `/release execute`:
-
-| Legacy Skill | Superseded By |
-|--------------|---------------|
-| `/planning-init` | `/release plan init` |
-| `/release-preflight` | `/release execute` |
-| `/release-changelog` | `/release execute` |
-| `/release-validate` | `/release execute` |
-| `/release-tag` | `/release execute` |
-| `/release-publish` | `/release execute` |
-| `/release-verify` | `/release execute` |
-| `/release-housekeeping` | `/release execute` |
 
 ## Adding New Skills
 
