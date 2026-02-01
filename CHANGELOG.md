@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## v0.43 - 2026-02-01
+
 ### Changed
 - Update `/release-validate` skill with manifest-based scenario selection (#3)
   - Add `recursive-pve-roundtrip --manifest n1-basic` for recursive/manifest changes
