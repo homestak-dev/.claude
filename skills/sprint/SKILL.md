@@ -52,7 +52,9 @@ Create a sprint issue, analyze dependencies, and recommend branch name.
 - Issues (optional): Scope issues for dependency/conflict analysis
 
 **Actions:**
-1. Read `docs/templates/sprint-issue.md`
+1. **Load context:**
+   - Read `docs/lifecycle/10-sprint-planning.md` for workflow guidance
+   - Read `docs/templates/sprint-issue.md` for issue template
 2. Create issue with populated template
 3. Recommend branch name: `sprint-{issue#}/{theme-kebab}`
 4. If scope issues provided:
@@ -104,11 +106,13 @@ Create sprint branches in affected repos.
 - Branch name or sprint issue number
 
 **Actions:**
-1. Fetch sprint issue if given number
-2. Parse metadata for repos
-3. Create branch in each repo
-4. Push with upstream tracking
-5. Update issue to mark branches created
+1. **Load context:**
+   - Read `docs/lifecycle/10-sprint-planning.md` for branch workflow
+2. Fetch sprint issue if given number
+3. Parse metadata for repos
+4. Create branch in each repo
+5. Push with upstream tracking
+6. Update issue to mark branches created
 
 **Example:**
 ```
@@ -124,6 +128,15 @@ Check prerequisites and run validation scenarios.
 - `--scenario <name>`: Test scenario (default from sprint issue or `vm-roundtrip`)
 - `--host <host>`: Target PVE host (default: `father`)
 - `--prereqs-only`: Only check prerequisites, don't run scenario
+
+**Actions:**
+1. **Load context:**
+   - Read `docs/lifecycle/40-validation.md` for validation requirements
+2. Check prerequisites for target host
+3. If prereqs fail, report issues and remediation
+4. Run iac-driver scenario: `./run.sh --scenario <name> --host <host> --verbose`
+5. Locate and read report from `iac-driver/reports/`
+6. Post results to sprint issue
 
 **Prerequisites Checked:**
 
@@ -143,13 +156,6 @@ Check prerequisites and run validation scenarios.
 | `nested-pve-roundtrip` | ~9 min | Full stack (including PVE installation) |
 | `vm-constructor` | ~1.5 min | Deploy VM only (no destroy) |
 | `vm-destructor` | ~30 sec | Destroy existing VM |
-
-**Actions:**
-1. Check prerequisites for target host
-2. If prereqs fail, report issues and remediation
-3. Run iac-driver scenario: `./run.sh --scenario <name> --host <host> --verbose`
-4. Locate and read report from `iac-driver/reports/`
-5. Post results to sprint issue
 
 **Example:**
 ```
@@ -180,17 +186,19 @@ Create PRs for sprint branches with proper formatting.
 - `--execute`: Also merge the PRs (requires approval)
 
 **Actions:**
-1. Verify branch state (not on master, has commits ahead)
-2. Push branch if needed
-3. Generate PR body with:
+1. **Load context:**
+   - Read `docs/lifecycle/50-merge.md` for PR requirements and checklist
+2. Verify branch state (not on master, has commits ahead)
+3. Push branch if needed
+4. Generate PR body with:
    - Summary from commits/sprint issue
    - Type of change checkboxes
    - Changes list
    - Testing documentation
    - Linked issues (Closes #N)
    - PR readiness checklist
-4. Create PR with conventional commit title format
-5. If `--execute`: merge after approval
+5. Create PR with conventional commit title format
+6. If `--execute`: merge after approval
 
 **PR Title Format:**
 - `fix(<scope>): <summary>` - Bug fixes
@@ -220,11 +228,13 @@ Create PRs for sprint branches with proper formatting.
 Complete sprint wrap-up.
 
 **Actions:**
-1. Verify scope issues closed
-2. Prompt for retrospective
-3. Update release issue with outcomes
-4. Clean up sprint branches
-5. Close sprint issue
+1. **Load context:**
+   - Read `docs/lifecycle/55-sprint-close.md` for close requirements
+2. Verify scope issues closed
+3. Prompt for retrospective
+4. Update release issue with outcomes
+5. Clean up sprint branches
+6. Close sprint issue
 
 **Example:**
 ```

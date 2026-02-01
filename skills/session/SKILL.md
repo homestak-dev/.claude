@@ -32,25 +32,28 @@ Manage session context with subcommands:
 
 Capture session state before compaction or ending work.
 
-**Actions by tier:**
+**Actions:**
+1. **Load context:**
+   - Read `docs/lifecycle/05-session-management.md` for tier-based save strategies
+2. Identify current sprint/work issue
+3. Determine work tier (Simple, Standard, Complex, Exploratory)
+4. Save according to tier:
 
 **Standard tier:**
-1. Identify current sprint/work issue
-2. Post structured comment with:
-   - Completed items
-   - Next steps
-   - Decisions made
-3. Confirm save location
+- Post structured comment with:
+  - Completed items
+  - Next steps
+  - Decisions made
+- Confirm save location
 
 **Complex/Exploratory tier:**
-1. Identify sprint issue
-2. Update handoff section:
-   - Current state (phase, branch, repos)
-   - Decisions made with rationale
-   - Files modified
-   - Open questions
-   - Next steps
-3. Confirm save location
+- Update handoff section:
+  - Current state (phase, branch, repos)
+  - Decisions made with rationale
+  - Files modified
+  - Open questions
+  - Next steps
+- Confirm save location
 
 **Example:**
 ```
@@ -65,11 +68,13 @@ Load session state when starting a new session.
 - Issue number (optional): defaults to most recent
 
 **Actions:**
-1. Find sprint/work issue
-2. Parse metadata (branch, repos, status)
-3. Read handoff section or recent comments
-4. Load relevant file context
-5. Present current state and next steps
+1. **Load context:**
+   - Read `docs/lifecycle/05-session-management.md` for resume strategies
+2. Find sprint/work issue
+3. Parse metadata (branch, repos, status)
+4. Read handoff section or recent comments
+5. Load relevant file context
+6. Present current state and next steps
 
 **Example:**
 ```
@@ -82,9 +87,11 @@ Load session state when starting a new session.
 Mid-session save without ending session.
 
 **Actions:**
-1. Update sprint log with progress
-2. Save incremental handoff
-3. Lighter weight than full save
+1. **Load context:**
+   - Read `docs/lifecycle/05-session-management.md` for checkpoint guidance
+2. Update sprint log with progress
+3. Save incremental handoff
+4. Lighter weight than full save
 
 **Example:**
 ```
