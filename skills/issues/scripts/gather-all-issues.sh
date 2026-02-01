@@ -22,7 +22,7 @@ FORMAT="${3:-table}"
 
 # Create temp directory for parallel results
 TMPDIR=$(mktemp -d)
-trap "rm -rf $TMPDIR" EXIT
+trap 'rm -rf "$TMPDIR"' EXIT
 
 
 # Function to fetch issues for a single repo
