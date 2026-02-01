@@ -13,12 +13,7 @@ Claude Code configuration for the homestak-dev workspace.
     ├── sprint/              # Sprint lifecycle
     ├── release/             # Release lifecycle
     ├── session/             # Session management
-    ├── issues/              # GitHub issue tracking
-    ├── planning-deps/       # Cross-repo dependency analysis
-    ├── planning-conflicts/  # File conflict analysis
-    ├── validate-prereqs/    # Validation prerequisites check
-    ├── validate-run/        # Run validation scenarios
-    └── merge-pr/            # Create pull requests
+    └── issues/              # GitHub issue tracking
 ```
 
 ## Skills
@@ -37,12 +32,12 @@ Claude Code configuration for the homestak-dev workspace.
 Manage multi-issue work with coordinated branches.
 
 ```
-/sprint plan <theme> [--release #N]   # Create sprint issue
-/sprint init [branch|issue#]           # Create branches in repos
-/sprint validate [--scenario <name>]   # Run validation
-/sprint sync                           # Merge master → sprint branches
-/sprint merge [--execute]              # Create/merge PRs
-/sprint close                          # Retrospective and cleanup
+/sprint plan <theme> [--release #N] [--issues ...]  # Create sprint issue, analyze deps/conflicts
+/sprint init [branch|issue#]                         # Create branches in repos
+/sprint validate [--scenario <name>] [--host <host>] # Check prereqs, run validation
+/sprint sync                                         # Merge master → sprint branches
+/sprint merge [--execute]                            # Create/merge PRs
+/sprint close                                        # Retrospective and cleanup
 ```
 
 ### `/release` - Release Lifecycle
@@ -74,16 +69,6 @@ Gather GitHub issues across repositories.
 /issues closed       # Show closed issues
 /issues open "bug"   # Filter by label
 ```
-
-### Supporting Skills
-
-| Skill | Phase | Description |
-|-------|-------|-------------|
-| `/planning-deps` | 10 | Analyze cross-repo dependencies |
-| `/planning-conflicts` | 10 | Analyze file overlap for branch strategy |
-| `/validate-prereqs` | 40 | Check validation host readiness |
-| `/validate-run` | 40 | Run iac-driver validation scenario |
-| `/merge-pr` | 50 | Create PR with template and linked issues |
 
 ## Adding New Skills
 
