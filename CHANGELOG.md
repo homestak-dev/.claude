@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+## v0.45 - 2026-02-02
+
+### Theme: Create Integration
+
+Integrates Create phase with Specify mechanism for automatic spec discovery on first boot.
+
 ### Added
 - Add `--to` parameter to `/session save` and `/session checkpoint` for explicit target (#176)
   - `--to release` saves to linked release issue
