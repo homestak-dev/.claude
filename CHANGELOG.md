@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+## v0.44 - 2026-02-02
+
+### Theme: Specify Infrastructure
+
+Completes the Specify phase infrastructure for the VM lifecycle architecture.
+
 ### Added
 - Add phase doc loading guidance to sprint skill (#165)
 - Add `--all` flag to `/sprint merge` for multi-repo sprints (#167)
