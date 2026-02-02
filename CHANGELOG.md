@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+### Added
+- Add `--to` parameter to `/session save` and `/session checkpoint` for explicit target (#176)
+  - `--to release` saves to linked release issue
+  - `--to sprint` saves to current sprint issue
+  - `--to <issue#>` saves to specific issue number
+
 ## v0.44 - 2026-02-02
 
 ### Theme: Specify Infrastructure

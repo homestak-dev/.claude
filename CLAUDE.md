@@ -55,10 +55,12 @@ Orchestrate release phases with human gates.
 Preserve context across compactions.
 
 ```
-/session save        # Pre-compact capture
-/session resume      # Load state in new session
-/session checkpoint  # Mid-session save
+/session save [--to release|sprint|<issue#>]  # Pre-compact capture
+/session resume [issue#]                       # Load state in new session
+/session checkpoint [--to ...]                 # Mid-session save
 ```
+
+**Target resolution:** Defaults to sprint issue when on sprint branch, otherwise release issue.
 
 ### `/issues` - Issue Tracking
 

@@ -21,9 +21,9 @@ Manage session context with subcommands:
 ## Usage
 
 ```
-/session save
+/session save [--to release|sprint|<issue#>]
 /session resume [issue#]
-/session checkpoint
+/session checkpoint [--to release|sprint|<issue#>]
 ```
 
 ## Subcommands
@@ -32,10 +32,20 @@ Manage session context with subcommands:
 
 Capture session state before compaction or ending work.
 
+**Inputs:**
+- `--to <target>` (optional): Explicit save target
+  - `release` → Save to the linked release issue
+  - `sprint` → Save to the current sprint issue
+  - `<issue#>` → Save to a specific issue number (e.g., `--to 154`)
+  - (omitted) → Infer from context (default: sprint if active, else release)
+
 **Actions:**
 1. **Load context:**
    - Read `docs/lifecycle/05-session-management.md` for tier-based save strategies
-2. Identify current sprint/work issue
+2. Resolve target issue:
+   - If `--to` specified, use that target
+   - If sprint branch active, default to sprint issue
+   - Otherwise, use release issue or prompt
 3. Determine work tier (Simple, Standard, Complex, Exploratory)
 4. Save according to tier:
 
@@ -55,9 +65,12 @@ Capture session state before compaction or ending work.
   - Next steps
 - Confirm save location
 
-**Example:**
+**Examples:**
 ```
-/session save
+/session save                  # Infer target (sprint if active, else release)
+/session save --to sprint      # Save to current sprint issue
+/session save --to release     # Save to linked release issue
+/session save --to 154         # Save to specific issue #154
 ```
 
 ### resume
@@ -86,17 +99,34 @@ Load session state when starting a new session.
 
 Mid-session save without ending session.
 
+**Inputs:**
+- `--to <target>` (optional): Same as `save` - explicit target issue
+
 **Actions:**
 1. **Load context:**
    - Read `docs/lifecycle/05-session-management.md` for checkpoint guidance
-2. Update sprint log with progress
-3. Save incremental handoff
-4. Lighter weight than full save
+2. Resolve target issue (same logic as `save`)
+3. Update sprint log with progress
+4. Save incremental handoff
+5. Lighter weight than full save
 
-**Example:**
+**Examples:**
 ```
-/session checkpoint
+/session checkpoint            # Checkpoint to inferred target
+/session checkpoint --to 177   # Checkpoint to specific issue
 ```
+
+## Target Resolution
+
+When `--to` is not specified, the target is inferred:
+
+| Context | Default Target | Rationale |
+|---------|----------------|-----------|
+| On sprint branch | Sprint issue | Active work unit |
+| No sprint branch | Release issue (if linked) | Parent tracking |
+| Neither | Prompt user | Avoid ambiguity |
+
+**Recommendation:** Use explicit `--to sprint` during sprint work to ensure session state stays with the sprint issue. Sprint close will summarize to the release issue.
 
 ## Session State in Issues
 
