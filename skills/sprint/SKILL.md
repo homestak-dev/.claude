@@ -183,8 +183,23 @@ Merge master into sprint branches.
 Create PRs for sprint branches with proper formatting.
 
 **Inputs:**
-- `--execute`: Also merge the PRs (requires approval)
+- `--execute`: Merge PRs after human approval (do NOT use without explicit approval)
 - `--all`: Create PRs in all repos listed in sprint issue
+
+> **⚠️ HUMAN GATE:** This command creates PRs, then STOPS for human review.
+> Do NOT use `--execute` or merge PRs without explicit human approval.
+> Branch protection failures are checkpoints, not obstacles to bypass.
+
+**Default behavior (no --execute):**
+1. Create PRs in affected repos
+2. **STOP and present PRs for human review**
+3. Output: "Awaiting human review and approval before merge."
+4. Wait for explicit user approval before proceeding
+
+**With --execute (only after human approval):**
+- Merge PRs using merge commit strategy (not squash)
+- Clean up branches after merge
+- Update sprint issue
 
 **Actions:**
 1. **Load context:**
@@ -206,7 +221,8 @@ Create PRs for sprint branches with proper formatting.
    - Linked issues (Closes #N)
    - PR readiness checklist
 6. Create PR with conventional commit title format
-7. If `--execute`: merge after approval
+7. **STOP: Present PRs and await human approval**
+8. Only if `--execute` AND human approved: merge PRs
 
 **Repo detection for --all:**
 Parse sprint issue body for:
@@ -237,12 +253,19 @@ Only repos with `[x]` are included.
 - [ ] Integration test scenario identified
 ```
 
-**Example:**
+**Example (two-step flow):**
 ```
-/sprint merge              # Single repo (current directory)
-/sprint merge --all        # All repos in sprint issue
-/sprint merge --execute    # Create and merge PR
-/sprint merge --all --execute  # All repos, create and merge
+# Step 1: Create PRs (always do this first)
+/sprint merge --all        # Creates PRs, then STOPS for review
+
+# Step 2: After human reviews and approves PRs
+/sprint merge --all --execute  # Merges the approved PRs
+```
+
+**Never do this:**
+```
+# WRONG: Don't use --execute without prior approval
+/sprint merge --execute    # Skips human review gate
 ```
 
 ### close
