@@ -153,7 +153,7 @@ When `--to` is not specified, the target is inferred:
 
 ### Current State
 - Phase: Implementation (30%)
-- Branch: sprint-152/recursive-pve
+- Branch: sprint/recursive-pve
 - Repos: iac-driver, ansible
 
 ### Decisions Made

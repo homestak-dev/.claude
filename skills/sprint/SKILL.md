@@ -56,7 +56,7 @@ Create a sprint issue, analyze dependencies, and recommend branch name.
    - Read `docs/lifecycle/10-sprint-planning.md` for workflow guidance
    - Read `docs/templates/sprint-issue.md` for issue template
 2. Create issue with populated template
-3. Recommend branch name: `sprint-{issue#}/{theme-kebab}`
+3. Recommend branch name: `sprint/{theme-kebab}`
 4. If scope issues provided:
    - Analyze cross-repo dependencies
    - Detect file conflicts
@@ -116,8 +116,8 @@ Create sprint branches in affected repos.
 
 **Example:**
 ```
-/sprint init sprint-152/recursive-pve
-/sprint init 152
+/sprint init sprint/recursive-pve
+/sprint init   # Uses branch from current sprint issue
 ```
 
 ### validate
