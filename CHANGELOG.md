@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+### Changed
+- Update sprint merge checkpoint language for rulesets (homestak-dev#185)
+
 ## v0.45 - 2026-02-02
 
 ### Theme: Create Integration
