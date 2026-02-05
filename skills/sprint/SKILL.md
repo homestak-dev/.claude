@@ -189,7 +189,7 @@ Create PRs for sprint branches with proper formatting.
 
 > **⚠️ HUMAN GATE:** This command creates PRs, then STOPS for human review.
 > Do NOT use `--execute` or merge PRs without explicit human approval.
-> Branch protection failures are checkpoints, not obstacles to bypass.
+> Ruleset failures are checkpoints, not obstacles to bypass.
 
 **Default behavior (no --execute):**
 1. Create PRs in affected repos
