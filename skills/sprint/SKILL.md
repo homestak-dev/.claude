@@ -55,6 +55,7 @@ Create a sprint issue, analyze dependencies, and recommend branch name.
 1. **Load context:**
    - Read `docs/lifecycle/10-sprint-planning.md` for workflow guidance
    - Read `docs/templates/sprint-issue.md` for issue template
+   - Read `docs/ISSUE-GUIDELINES.md` for title and label conventions
 2. Create issue with populated template
 3. Recommend branch name: `sprint/{theme-kebab}`
 4. If scope issues provided:
@@ -204,6 +205,7 @@ Create PRs for sprint branches with proper formatting.
 **Actions:**
 1. **Load context:**
    - Read `docs/lifecycle/50-merge.md` for PR requirements and checklist
+   - Read `docs/ISSUE-GUIDELINES.md` for PR title format conventions
 2. If `--all`:
    a. Fetch current sprint issue (from branch name or prompt)
    b. Parse `## Repos` section for checked repos
@@ -328,6 +330,7 @@ The sprint issue IS the state. Key sections:
 
 ## Related Documents
 
+- [ISSUE-GUIDELINES.md](docs/ISSUE-GUIDELINES.md)
 - [10-sprint-planning.md](docs/lifecycle/10-sprint-planning.md)
 - [40-validation.md](docs/lifecycle/40-validation.md)
 - [50-merge.md](docs/lifecycle/50-merge.md)
