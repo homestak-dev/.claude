@@ -126,7 +126,7 @@ Create sprint branches in affected repos.
 Check prerequisites and run validation scenarios.
 
 **Inputs:**
-- `--scenario <name>`: Test scenario (default from sprint issue or `vm-roundtrip`)
+- `--scenario <name>`: Test scenario (default from sprint issue or `./run.sh test -M n1-basic-v2`)
 - `--host <host>`: Target PVE host (default: `father`)
 - `--prereqs-only`: Only check prerequisites, don't run scenario
 
@@ -153,15 +153,15 @@ Check prerequisites and run validation scenarios.
 
 | Scenario | Duration | Purpose |
 |----------|----------|---------|
-| `vm-roundtrip` | ~2 min | Quick validation (provision → boot → verify → destroy) |
-| `nested-pve-roundtrip` | ~9 min | Full stack (including PVE installation) |
-| `vm-constructor` | ~1.5 min | Deploy VM only (no destroy) |
-| `vm-destructor` | ~30 sec | Destroy existing VM |
+| `./run.sh test -M n1-basic-v2 -H <host>` | ~2 min | Quick validation (provision → boot → verify → destroy) |
+| `./run.sh test -M n2-quick-v2 -H <host>` | ~9 min | Tiered validation (PVE + nested VM) |
+| `./run.sh create -M n1-basic-v2 -H <host>` | ~1.5 min | Deploy VM only (no destroy) |
+| `./run.sh destroy -M n1-basic-v2 -H <host>` | ~30 sec | Destroy existing VM |
 
 **Example:**
 ```
 /sprint validate
-/sprint validate --scenario nested-pve-roundtrip --host mother
+/sprint validate --scenario "test -M n2-quick-v2" --host mother
 /sprint validate --prereqs-only --host father
 ```
 
@@ -192,10 +192,11 @@ Create PRs for sprint branches with proper formatting.
 > Ruleset failures are checkpoints, not obstacles to bypass.
 
 **Default behavior (no --execute):**
-1. Create PRs in affected repos
-2. **STOP and present PRs for human review**
-3. Output: "Awaiting human review and approval before merge."
-4. Wait for explicit user approval before proceeding
+1. Create PRs in affected repos (`GH_TOKEN=$HOMESTAK_BOT_TOKEN gh pr create`)
+2. **Immediately** enable auto-merge on each PR (`gh pr merge --auto --squash <pr> --repo homestak-dev/<repo>` — default auth, NOT bot)
+3. **STOP and present PRs for human review**
+4. Output: "Awaiting human review and approval before merge."
+5. Wait for explicit user approval before proceeding
 
 **With --execute (only after human approval):**
 - Merge PRs using merge commit strategy (not squash)
@@ -222,9 +223,10 @@ Create PRs for sprint branches with proper formatting.
    - Testing documentation
    - Linked issues (Closes #N)
    - PR readiness checklist
-6. Create PR with conventional commit title format
-7. **STOP: Present PRs and await human approval**
-8. Only if `--execute` AND human approved: merge PRs
+6. Create PR with conventional commit title format (`GH_TOKEN=$HOMESTAK_BOT_TOKEN gh pr create`)
+7. **Immediately** enable auto-merge (`gh pr merge --auto --squash <pr> --repo homestak-dev/<repo>` — default auth, NOT bot)
+8. **STOP: Present PRs and await human approval**
+9. Only if `--execute` AND human approved: merge PRs
 
 **Repo detection for --all:**
 Parse sprint issue body for:
