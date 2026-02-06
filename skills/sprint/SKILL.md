@@ -192,10 +192,11 @@ Create PRs for sprint branches with proper formatting.
 > Ruleset failures are checkpoints, not obstacles to bypass.
 
 **Default behavior (no --execute):**
-1. Create PRs in affected repos
-2. **STOP and present PRs for human review**
-3. Output: "Awaiting human review and approval before merge."
-4. Wait for explicit user approval before proceeding
+1. Create PRs in affected repos (`GH_TOKEN=$HOMESTAK_BOT_TOKEN gh pr create`)
+2. **Immediately** enable auto-merge on each PR (`gh pr merge --auto --squash <pr> --repo homestak-dev/<repo>` — default auth, NOT bot)
+3. **STOP and present PRs for human review**
+4. Output: "Awaiting human review and approval before merge."
+5. Wait for explicit user approval before proceeding
 
 **With --execute (only after human approval):**
 - Merge PRs using merge commit strategy (not squash)
@@ -222,9 +223,10 @@ Create PRs for sprint branches with proper formatting.
    - Testing documentation
    - Linked issues (Closes #N)
    - PR readiness checklist
-6. Create PR with conventional commit title format
-7. **STOP: Present PRs and await human approval**
-8. Only if `--execute` AND human approved: merge PRs
+6. Create PR with conventional commit title format (`GH_TOKEN=$HOMESTAK_BOT_TOKEN gh pr create`)
+7. **Immediately** enable auto-merge (`gh pr merge --auto --squash <pr> --repo homestak-dev/<repo>` — default auth, NOT bot)
+8. **STOP: Present PRs and await human approval**
+9. Only if `--execute` AND human approved: merge PRs
 
 **Repo detection for --all:**
 Parse sprint issue body for:
