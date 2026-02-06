@@ -126,7 +126,7 @@ Create sprint branches in affected repos.
 Check prerequisites and run validation scenarios.
 
 **Inputs:**
-- `--scenario <name>`: Test scenario (default from sprint issue or `vm-roundtrip`)
+- `--scenario <name>`: Test scenario (default from sprint issue or `./run.sh test -M n1-basic-v2`)
 - `--host <host>`: Target PVE host (default: `father`)
 - `--prereqs-only`: Only check prerequisites, don't run scenario
 
@@ -153,15 +153,15 @@ Check prerequisites and run validation scenarios.
 
 | Scenario | Duration | Purpose |
 |----------|----------|---------|
-| `vm-roundtrip` | ~2 min | Quick validation (provision → boot → verify → destroy) |
-| `nested-pve-roundtrip` | ~9 min | Full stack (including PVE installation) |
-| `vm-constructor` | ~1.5 min | Deploy VM only (no destroy) |
-| `vm-destructor` | ~30 sec | Destroy existing VM |
+| `./run.sh test -M n1-basic-v2 -H <host>` | ~2 min | Quick validation (provision → boot → verify → destroy) |
+| `./run.sh test -M n2-quick-v2 -H <host>` | ~9 min | Tiered validation (PVE + nested VM) |
+| `./run.sh create -M n1-basic-v2 -H <host>` | ~1.5 min | Deploy VM only (no destroy) |
+| `./run.sh destroy -M n1-basic-v2 -H <host>` | ~30 sec | Destroy existing VM |
 
 **Example:**
 ```
 /sprint validate
-/sprint validate --scenario nested-pve-roundtrip --host mother
+/sprint validate --scenario "test -M n2-quick-v2" --host mother
 /sprint validate --prereqs-only --host father
 ```
 
