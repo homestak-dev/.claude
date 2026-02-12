@@ -53,6 +53,7 @@ Create a sprint issue, analyze dependencies, and recommend branch name.
 
 **Actions:**
 1. **Load context:**
+   - Read `docs/lifecycle/00-overview.md` for work tiers and repo dependency order
    - Read `docs/lifecycle/10-sprint-planning.md` for workflow guidance
    - Read `docs/templates/sprint-issue.md` for issue template
    - Read `docs/ISSUE-GUIDELINES.md` for title and label conventions
