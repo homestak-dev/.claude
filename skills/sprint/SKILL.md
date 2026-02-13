@@ -127,7 +127,7 @@ Create sprint branches in affected repos.
 Check prerequisites and run validation scenarios.
 
 **Inputs:**
-- `--scenario <name>`: Test scenario (default from sprint issue or `./run.sh test -M n1-basic-v2`)
+- `--scenario <name>`: Test scenario (default from sprint issue or `./run.sh manifest test -M n1-basic-v2`)
 - `--host <host>`: Target PVE host (default: `father`)
 - `--prereqs-only`: Only check prerequisites, don't run scenario
 
@@ -154,10 +154,10 @@ Check prerequisites and run validation scenarios.
 
 | Scenario | Duration | Purpose |
 |----------|----------|---------|
-| `./run.sh test -M n1-basic-v2 -H <host>` | ~2 min | Quick validation (provision → boot → verify → destroy) |
-| `./run.sh test -M n2-quick-v2 -H <host>` | ~9 min | Tiered validation (PVE + nested VM) |
-| `./run.sh create -M n1-basic-v2 -H <host>` | ~1.5 min | Deploy VM only (no destroy) |
-| `./run.sh destroy -M n1-basic-v2 -H <host>` | ~30 sec | Destroy existing VM |
+| `./run.sh manifest test -M n1-basic-v2 -H <host>` | ~2 min | Quick validation (provision → boot → verify → destroy) |
+| `./run.sh manifest test -M n2-quick-v2 -H <host>` | ~9 min | Tiered validation (PVE + nested VM) |
+| `./run.sh manifest apply -M n1-basic-v2 -H <host>` | ~1.5 min | Deploy VM only (no destroy) |
+| `./run.sh manifest destroy -M n1-basic-v2 -H <host>` | ~30 sec | Destroy existing VM |
 
 **Example:**
 ```
