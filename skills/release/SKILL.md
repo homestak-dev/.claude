@@ -84,8 +84,8 @@ Run release phases with human gates.
      - `docs/lifecycle/64-release-packer.md` for Phase 64
      - `docs/lifecycle/65-release-publish.md` for Phase 65 (GATE)
      - `docs/lifecycle/66-release-verify.md` for Phase 66
-     - `docs/lifecycle/67-release-aar.md` for Phase 67
-     - `docs/lifecycle/68-release-housekeeping.md` for Phase 68
+     - `docs/lifecycle/67-release-housekeeping.md` for Phase 67
+     - `docs/lifecycle/68-release-aar.md` for Phase 68
 2. Execute phases in order:
    - Phase 61: Preflight checks
    - Phase 62: CHANGELOG updates
@@ -93,7 +93,7 @@ Run release phases with human gates.
    - Phase 64: Packer check
    - Phase 65: Publish [GATE - pause for approval]
    - Phase 66: Verify
-3. Prompt: "Complete AAR (67) and retrospective (70) manually"
+3. Prompt: "Complete Housekeeping (67), AAR (68), and retrospective (69) manually"
 
 **Example:**
 ```
@@ -110,7 +110,7 @@ The skill uses `scripts/release.sh` for automation:
 ./scripts/release.sh preflight
 ./scripts/release.sh tag --dry-run
 ./scripts/release.sh tag --execute
-./scripts/release.sh publish --execute --workflow github
+./scripts/release.sh publish --execute --yes
 ./scripts/release.sh verify
 ./scripts/release.sh close --execute
 ```
@@ -140,6 +140,6 @@ The release issue tracks:
 - [64-release-packer.md](docs/lifecycle/64-release-packer.md)
 - [65-release-publish.md](docs/lifecycle/65-release-publish.md)
 - [66-release-verify.md](docs/lifecycle/66-release-verify.md)
-- [67-release-aar.md](docs/lifecycle/67-release-aar.md)
-- [68-release-housekeeping.md](docs/lifecycle/68-release-housekeeping.md)
+- [67-release-housekeeping.md](docs/lifecycle/67-release-housekeeping.md)
+- [68-release-aar.md](docs/lifecycle/68-release-aar.md)
 - [release-issue.md](docs/templates/release-issue.md)
