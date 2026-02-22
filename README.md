@@ -27,7 +27,7 @@ This repository contains shared Claude Code configuration including:
 # Sprint lifecycle
 /sprint plan "Theme" --release #N    # Create sprint issue
 /sprint init [branch|issue#]         # Create branches
-/sprint validate --host father       # Run validation
+/sprint validate --host srv1       # Run validation
 /sprint merge                        # Create PR (current repo)
 /sprint merge --all                  # Create PRs (all sprint repos)
 /sprint close                        # Wrap up sprint

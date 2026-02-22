@@ -128,7 +128,7 @@ Check prerequisites and run validation scenarios.
 
 **Inputs:**
 - `--scenario <name>`: Test scenario (default from sprint issue or `./run.sh manifest test -M n1-push`)
-- `--host <host>`: Target PVE host (default: `father`)
+- `--host <host>`: Target PVE host (required)
 - `--prereqs-only`: Only check prerequisites, don't run scenario
 
 **Actions:**
@@ -162,8 +162,8 @@ Check prerequisites and run validation scenarios.
 **Example:**
 ```
 /sprint validate
-/sprint validate --scenario "test -M n2-tiered" --host mother
-/sprint validate --prereqs-only --host father
+/sprint validate --scenario "test -M n2-tiered" --host srv2
+/sprint validate --prereqs-only --host srv1
 ```
 
 ### sync
