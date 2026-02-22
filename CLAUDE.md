@@ -23,7 +23,7 @@ Claude Code configuration for the homestak-dev workspace.
 | Skill | Subcommands | Description |
 |-------|-------------|-------------|
 | `/sprint` | plan, init, validate, sync, merge, close | Sprint lifecycle management |
-| `/release` | plan init, plan update, execute | Release lifecycle with gates |
+| `/release` | plan init, plan update, execute, close | Release lifecycle with gates |
 | `/session` | save, resume, checkpoint | Context preservation |
 | `/issues` | - | Gather GitHub issues across repos |
 
