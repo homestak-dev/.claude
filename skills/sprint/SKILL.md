@@ -127,7 +127,7 @@ Create sprint branches in affected repos.
 Check prerequisites and run validation scenarios.
 
 **Inputs:**
-- `--scenario <name>`: Test scenario (default from sprint issue or `./run.sh manifest test -M n1-basic-v2`)
+- `--scenario <name>`: Test scenario (default from sprint issue or `./run.sh manifest test -M n1-push`)
 - `--host <host>`: Target PVE host (default: `father`)
 - `--prereqs-only`: Only check prerequisites, don't run scenario
 
@@ -136,7 +136,7 @@ Check prerequisites and run validation scenarios.
    - Read `docs/lifecycle/40-validation.md` for validation requirements
 2. Check prerequisites for target host
 3. If prereqs fail, report issues and remediation
-4. Run iac-driver scenario: `./run.sh --scenario <name> --host <host> --verbose`
+4. Run iac-driver test: `./run.sh manifest test -M <name> -H <host> --verbose`
 5. Locate and read report from `iac-driver/reports/`
 6. Post results to sprint issue
 
@@ -154,15 +154,15 @@ Check prerequisites and run validation scenarios.
 
 | Scenario | Duration | Purpose |
 |----------|----------|---------|
-| `./run.sh manifest test -M n1-basic-v2 -H <host>` | ~2 min | Quick validation (provision → boot → verify → destroy) |
-| `./run.sh manifest test -M n2-quick-v2 -H <host>` | ~9 min | Tiered validation (PVE + nested VM) |
-| `./run.sh manifest apply -M n1-basic-v2 -H <host>` | ~1.5 min | Deploy VM only (no destroy) |
-| `./run.sh manifest destroy -M n1-basic-v2 -H <host>` | ~30 sec | Destroy existing VM |
+| `./run.sh manifest test -M n1-push -H <host>` | ~2 min | Quick validation (provision → boot → verify → destroy) |
+| `./run.sh manifest test -M n2-tiered -H <host>` | ~9 min | Tiered validation (PVE + nested VM) |
+| `./run.sh manifest apply -M n1-push -H <host>` | ~1.5 min | Deploy VM only (no destroy) |
+| `./run.sh manifest destroy -M n1-push -H <host>` | ~30 sec | Destroy existing VM |
 
 **Example:**
 ```
 /sprint validate
-/sprint validate --scenario "test -M n2-quick-v2" --host mother
+/sprint validate --scenario "test -M n2-tiered" --host mother
 /sprint validate --prereqs-only --host father
 ```
 
@@ -249,7 +249,7 @@ Only repos with `[x]` are included.
 
 **PR Readiness Checklist:**
 ```markdown
-- [ ] Feature tested end-to-end (not just unit tests)
+- [ ] Feature tested with integration test (not just unit tests)
 - [ ] External tool assumptions verified (test actual CLI behavior)
 - [ ] CHANGELOG entry in this PR
 - [ ] CLAUDE.md updated if architecture changed
