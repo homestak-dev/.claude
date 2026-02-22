@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## v0.50 - 2026-02-22
+
 ### Changed
 - Update sprint merge checkpoint language for rulesets (homestak-dev#185)
 
