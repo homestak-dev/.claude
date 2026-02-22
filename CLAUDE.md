@@ -36,7 +36,7 @@ Manage multi-issue work with coordinated branches.
 /sprint init [branch|issue#]                         # Create branches in repos
 /sprint validate [--scenario <name>] [--host <host>] # Check prereqs, run validation
 /sprint sync                                         # Merge master → sprint branches
-/sprint merge [--execute]                            # Create/merge PRs
+/sprint merge [--execute] [--all]                     # Create/merge PRs (--all for all repos)
 /sprint close                                        # Retrospective and cleanup
 ```
 
