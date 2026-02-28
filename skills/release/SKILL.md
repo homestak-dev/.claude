@@ -45,7 +45,8 @@ Create a release issue early with theme.
    - Read `docs/templates/release-issue.md` for issue template
 2. Determine next version number
 3. Create issue with template and theme
-4. Return issue URL
+4. Add `release` label to the issue
+5. Return issue URL
 
 **Example:**
 ```
