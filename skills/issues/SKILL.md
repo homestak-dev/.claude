@@ -1,6 +1,6 @@
 ---
 name: issues
-description: Gather and analyze GitHub issues across all homestak-dev repositories. Use when collecting issues inventory, filtering by labels or status, generating issue reports, or tracking open issues across the homestak-dev organization.
+description: Gather and analyze GitHub issues across all homestak repositories (homestak, homestak-dev, homestak-iac orgs). Use when collecting issues inventory, filtering by labels or status, generating issue reports, or tracking open issues.
 allowed-tools:
   - Bash(gh:*)
   - Bash(jq:*)
@@ -12,19 +12,19 @@ allowed-tools:
 
 ## Overview
 
-Collect and analyze GitHub issues across all repositories in the homestak-dev organization using the GitHub CLI (`gh`).
+Collect and analyze GitHub issues across all repositories in the homestak organizations using the GitHub CLI (`gh`).
 
 ## Repositories Covered
 
-- .claude
-- .github
-- ansible
-- bootstrap
-- homestak-dev
-- iac-driver
-- packer
-- site-config
-- tofu
+- homestak-dev/.claude
+- homestak-dev/.github
+- homestak-dev/meta
+- homestak/bootstrap
+- homestak/config
+- homestak-iac/ansible
+- homestak-iac/iac-driver
+- homestak-iac/packer
+- homestak-iac/tofu
 
 ## When to use this Skill
 

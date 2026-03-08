@@ -1,19 +1,19 @@
 #!/bin/bash
-# Gather issues from all homestak-dev repositories
+# Gather issues from all homestak repositories
 # Runs GitHub API calls in parallel for faster results
 
 set -e
 
 REPOS=(
-  "homestak-dev/ansible"
-  "homestak-dev/bootstrap"
-  "homestak-dev/iac-driver"
-  "homestak-dev/packer"
-  "homestak-dev/site-config"
-  "homestak-dev/tofu"
+  "homestak-iac/ansible"
+  "homestak/bootstrap"
+  "homestak-iac/iac-driver"
+  "homestak-iac/packer"
+  "homestak/config"
+  "homestak-iac/tofu"
   "homestak-dev/.claude"
   "homestak-dev/.github"
-  "homestak-dev/homestak-dev"
+  "homestak-dev/meta"
 )
 
 STATE="${1:-open}"
