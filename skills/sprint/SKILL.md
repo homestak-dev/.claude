@@ -68,20 +68,20 @@ Create a sprint issue, analyze dependencies, and recommend branch name.
 
 Map issues against repo dependency order:
 ```
-.github → .claude → homestak-dev → site-config → tofu → ansible → bootstrap → packer → iac-driver
+.github → .claude → meta → config → tofu → ansible → bootstrap → packer → iac-driver
 ```
 
 | Position | Repo | Depends On |
 |----------|------|------------|
-| 1 | .github | - |
-| 2 | .claude | .github |
-| 3 | homestak-dev | .github, .claude |
-| 4 | site-config | homestak-dev |
-| 5 | tofu | site-config |
-| 6 | ansible | site-config, tofu |
-| 7 | bootstrap | ansible, tofu |
-| 8 | packer | bootstrap |
-| 9 | iac-driver | all above |
+| 1 | homestak-dev/.github | - |
+| 2 | homestak-dev/.claude | .github |
+| 3 | homestak-dev/meta | .github, .claude |
+| 4 | homestak/config | meta |
+| 5 | homestak-iac/tofu | config |
+| 6 | homestak-iac/ansible | config, tofu |
+| 7 | homestak/bootstrap | ansible, tofu |
+| 8 | homestak-iac/packer | bootstrap |
+| 9 | homestak-iac/iac-driver | all above |
 
 **Conflict Analysis:**
 
@@ -194,7 +194,7 @@ Create PRs for sprint branches with proper formatting.
 
 **Default behavior (no --execute):**
 1. Create PRs in affected repos (`GH_TOKEN=$HOMESTAK_BOT_TOKEN gh pr create`)
-2. **Immediately** enable auto-merge on each PR (`gh pr merge --auto --squash <pr> --repo homestak-dev/<repo>` — default auth, NOT bot)
+2. **Immediately** enable auto-merge on each PR (`gh pr merge --auto --squash <pr> --repo <org>/<repo>` — default auth, NOT bot)
 3. **STOP and present PRs for human review**
 4. Output: "Awaiting human review and approval before merge."
 5. Wait for explicit user approval before proceeding
@@ -225,7 +225,7 @@ Create PRs for sprint branches with proper formatting.
    - Linked issues (Closes #N)
    - PR readiness checklist
 6. Create PR with conventional commit title format (`GH_TOKEN=$HOMESTAK_BOT_TOKEN gh pr create`)
-7. **Immediately** enable auto-merge (`gh pr merge --auto --squash <pr> --repo homestak-dev/<repo>` — default auth, NOT bot)
+7. **Immediately** enable auto-merge (`gh pr merge --auto --squash <pr> --repo <org>/<repo>` — default auth, NOT bot)
 8. **STOP: Present PRs and await human approval**
 9. Only if `--execute` AND human approved: merge PRs
 

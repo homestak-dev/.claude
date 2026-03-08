@@ -24,29 +24,29 @@ The `gather-all-issues.sh` script provides quick command-line access. It runs al
 
 ```bash
 # List open issues for a single repo
-gh issue list -R homestak-dev/ansible
+gh issue list -R homestak-iac/ansible
 
 # List all issues (open and closed)
-gh issue list -R homestak-dev/ansible --state all
+gh issue list -R homestak-iac/ansible --state all
 
 # Filter by label
-gh issue list -R homestak-dev/ansible --label bug,critical
+gh issue list -R homestak-iac/ansible --label bug,critical
 
 # Limit results
-gh issue list -R homestak-dev/ansible --limit 50
+gh issue list -R homestak-iac/ansible --limit 50
 ```
 
 ### JSON output for processing
 
 ```bash
 # Get issues as JSON
-gh issue list -R homestak-dev/ansible --json number,title,url,state,labels,assignees
+gh issue list -R homestak-iac/ansible --json number,title,url,state,labels,assignees
 
 # Count issues
-gh issue list -R homestak-dev/ansible --json number | jq 'length'
+gh issue list -R homestak-iac/ansible --json number | jq 'length'
 
 # Filter issues by label in JSON
-gh issue list -R homestak-dev/ansible --json number,title,labels | \
+gh issue list -R homestak-iac/ansible --json number,title,labels | \
   jq '[.[] | select(.labels[].name | contains("bug"))]'
 ```
 
@@ -54,9 +54,9 @@ gh issue list -R homestak-dev/ansible --json number,title,labels | \
 
 ```bash
 # Loop through all repos
-for repo in ansible bootstrap iac-driver packer site-config tofu .claude .github homestak-dev; do
+for repo in homestak-iac/ansible homestak/bootstrap homestak-iac/iac-driver homestak-iac/packer homestak/config homestak-iac/tofu homestak-dev/.claude homestak-dev/.github homestak-dev/meta; do
   echo "=== $repo ==="
-  gh issue list -R "homestak-dev/$repo" --state open
+  gh issue list -R "$repo" --state open
 done
 ```
 
@@ -66,8 +66,8 @@ done
 
 ```bash
 # Get all open issues created in the last 7 days
-for repo in ansible bootstrap iac-driver packer site-config tofu .claude .github homestak-dev; do
-  gh issue list -R "homestak-dev/$repo" --state open \
+for repo in homestak-iac/ansible homestak/bootstrap homestak-iac/iac-driver homestak-iac/packer homestak/config homestak-iac/tofu homestak-dev/.claude homestak-dev/.github homestak-dev/meta; do
+  gh issue list -R "$repo" --state open \
     --json number,title,createdAt,url | \
     jq --arg since "$(date -d '7 days ago' +%Y-%m-%d)" \
       '[.[] | select(.createdAt >= $since)]'
@@ -78,8 +78,8 @@ done
 
 ```bash
 # Find all high-priority issues
-for repo in ansible bootstrap iac-driver packer site-config tofu .claude .github homestak-dev; do
-  gh issue list -R "homestak-dev/$repo" --label "priority:high,critical"
+for repo in homestak-iac/ansible homestak/bootstrap homestak-iac/iac-driver homestak-iac/packer homestak/config homestak-iac/tofu homestak-dev/.claude homestak-dev/.github homestak-dev/meta; do
+  gh issue list -R "$repo" --label "priority:high,critical"
 done
 ```
 
@@ -88,14 +88,14 @@ done
 ```bash
 # Count issues by state
 echo "Open issues:"
-for repo in ansible bootstrap iac-driver packer site-config tofu .claude .github homestak-dev; do
-  count=$(gh issue list -R "homestak-dev/$repo" --state open --json number | jq 'length')
+for repo in homestak-iac/ansible homestak/bootstrap homestak-iac/iac-driver homestak-iac/packer homestak/config homestak-iac/tofu homestak-dev/.claude homestak-dev/.github homestak-dev/meta; do
+  count=$(gh issue list -R "$repo" --state open --json number | jq 'length')
   echo "  $repo: $count"
 done
 
 echo "Closed issues (last 30 days):"
-for repo in ansible bootstrap iac-driver packer site-config tofu .claude .github homestak-dev; do
-  count=$(gh issue list -R "homestak-dev/$repo" --state closed \
+for repo in homestak-iac/ansible homestak/bootstrap homestak-iac/iac-driver homestak-iac/packer homestak/config homestak-iac/tofu homestak-dev/.claude homestak-dev/.github homestak-dev/meta; do
+  count=$(gh issue list -R "$repo" --state closed \
     --json closedAt | \
     jq --arg since "$(date -d '30 days ago' +%Y-%m-%d)" \
       '[.[] | select(.closedAt >= $since)] | length')
@@ -125,7 +125,7 @@ Total: 37 issues
   {
     "number": 42,
     "title": "Fix ansible deployment script",
-    "url": "https://github.com/homestak-dev/ansible/issues/42",
+    "url": "https://github.com/homestak-iac/ansible/issues/42",
     "state": "OPEN",
     "labels": [{"name": "bug"}, {"name": "priority:high"}],
     "assignees": [],
@@ -140,8 +140,7 @@ Total: 37 issues
 You can set these in your shell profile for convenience:
 
 ```bash
-export HOMESTAK_REPOS="ansible bootstrap iac-driver packer site-config tofu .claude .github homestak-dev"
-export HOMESTAK_ORG="homestak-dev"
+export HOMESTAK_REPOS="homestak-iac/ansible homestak/bootstrap homestak-iac/iac-driver homestak-iac/packer homestak/config homestak-iac/tofu homestak-dev/.claude homestak-dev/.github homestak-dev/meta"
 ```
 
 ## GitHub CLI Authentication
