@@ -16,12 +16,12 @@ Collect and analyze GitHub issues across all repositories in the homestak organi
 
 ## Repositories Covered
 
-- homestak-dev/.claude
-- homestak-dev/.github
-- homestak-dev/meta
 - homestak/bare-metal
 - homestak/bootstrap
 - homestak/config
+- homestak-dev/.claude
+- homestak-dev/.github
+- homestak-dev/meta
 - homestak-iac/ansible
 - homestak-iac/iac-driver
 - homestak-iac/packer
