@@ -159,16 +159,32 @@ Close the release issue after retrospective review.
 
 ## Integration with release.sh
 
-The skill uses `scripts/release.sh` for automation:
+The skill uses `scripts/release` for automation:
 
 ```bash
-./scripts/release.sh init --version X.Y --issue N
-./scripts/release.sh preflight
-./scripts/release.sh tag --dry-run
-./scripts/release.sh tag --execute
-./scripts/release.sh publish --execute --yes
-./scripts/release.sh verify
-./scripts/release.sh close --execute
+./scripts/release init --version X.Y --issue N
+./scripts/release preflight
+./scripts/release tag --dry-run
+./scripts/release tag --execute
+./scripts/release publish --execute --yes
+./scripts/release verify
+./scripts/release close --execute
+```
+
+## PR Creation
+
+When creating PRs during release (e.g., CHANGELOG stamps), always use `--head <branch>` explicitly:
+
+```bash
+GH_TOKEN=$HOMESTAK_BOT_TOKEN gh pr create --repo <org>/<repo> \
+  --head <branch> --title "..." --body "..."
+```
+
+**CHANGELOG-only PRs** (version header stamps with no code changes) may be approved by the operator without manual review. Verify diff is CHANGELOG-only before approving:
+
+```bash
+gh pr diff <N> --repo <org>/<repo> --name-only  # Should show only CHANGELOG.md
+gh pr review <N> --repo <org>/<repo> --approve
 ```
 
 ## Gates
