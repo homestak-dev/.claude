@@ -6,6 +6,7 @@ set -e
 
 REPOS=(
   "homestak-iac/ansible"
+  "homestak/bare-metal"
   "homestak/bootstrap"
   "homestak-iac/iac-driver"
   "homestak-iac/packer"

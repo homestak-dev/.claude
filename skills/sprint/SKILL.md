@@ -68,7 +68,7 @@ Create a sprint issue, analyze dependencies, and recommend branch name.
 
 Map issues against repo dependency order:
 ```
-.github → .claude → meta → config → tofu → ansible → bootstrap → packer → iac-driver
+.github → .claude → meta → config → bare-metal → tofu → ansible → bootstrap → packer → iac-driver
 ```
 
 | Position | Repo | Depends On |
@@ -77,11 +77,12 @@ Map issues against repo dependency order:
 | 2 | homestak-dev/.claude | .github |
 | 3 | homestak-dev/meta | .github, .claude |
 | 4 | homestak/config | meta |
-| 5 | homestak-iac/tofu | config |
-| 6 | homestak-iac/ansible | config, tofu |
-| 7 | homestak/bootstrap | ansible, tofu |
-| 8 | homestak-iac/packer | bootstrap |
-| 9 | homestak-iac/iac-driver | all above |
+| 5 | homestak/bare-metal | config |
+| 6 | homestak-iac/tofu | config |
+| 7 | homestak-iac/ansible | config, tofu |
+| 8 | homestak/bootstrap | ansible, tofu |
+| 9 | homestak-iac/packer | bootstrap |
+| 10 | homestak-iac/iac-driver | all above |
 
 **Conflict Analysis:**
 

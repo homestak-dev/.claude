@@ -19,6 +19,7 @@ Collect and analyze GitHub issues across all repositories in the homestak organi
 - homestak-dev/.claude
 - homestak-dev/.github
 - homestak-dev/meta
+- homestak/bare-metal
 - homestak/bootstrap
 - homestak/config
 - homestak-iac/ansible
@@ -39,7 +40,7 @@ Collect and analyze GitHub issues across all repositories in the homestak organi
 Just ask me to gather issues from homestak repos. You can optionally specify:
 1. Filters (labels, state, assignee, milestone)
 2. Output format (JSON if requested)
-3. Specific repos (or I'll check all 9)
+3. Specific repos (or I'll check all 10)
 
 ## Examples
 
@@ -110,7 +111,7 @@ If not authenticated, use `gh auth login`.
 
 ## Tips
 
-- Default behavior is to check all 9 repos for open issues
+- Default behavior is to check all 10 repos for open issues
 - Use labels to filter by priority or type
 - Combine with date filters for weekly/monthly reviews
 - Export to JSON for custom analysis
