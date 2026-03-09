@@ -5,6 +5,9 @@
 set -e
 
 REPOS=(
+  "homestak/bare-metal"
+  "homestak/bootstrap"
+  "homestak/config"
   "homestak-dev/.claude"
   "homestak-dev/.github"
   "homestak-dev/meta"
@@ -12,9 +15,6 @@ REPOS=(
   "homestak-iac/iac-driver"
   "homestak-iac/packer"
   "homestak-iac/tofu"
-  "homestak/bare-metal"
-  "homestak/bootstrap"
-  "homestak/config"
 )
 
 STATE="${1:-open}"
