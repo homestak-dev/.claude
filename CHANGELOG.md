@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+## v0.55 - 2026-03-08
+
+### Added
+- Add bare-metal to issues skill (gather script, SKILL.md, reference.md)
+- Add bare-metal to sprint skill dependency table at position 5
+- Adopt alphabetical org ordering convention (homestak → homestak-dev → homestak-iac)
+
 ## v0.54 - 2026-03-08
 
 No changes.
