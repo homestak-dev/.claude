@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## v0.54 - 2026-03-08
+
+No changes.
+
 ## v0.53 - 2026-03-06
 
 No changes.
