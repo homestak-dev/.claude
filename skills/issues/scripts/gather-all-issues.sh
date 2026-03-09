@@ -5,16 +5,16 @@
 set -e
 
 REPOS=(
-  "homestak-iac/ansible"
-  "homestak/bare-metal"
-  "homestak/bootstrap"
-  "homestak-iac/iac-driver"
-  "homestak-iac/packer"
-  "homestak/config"
-  "homestak-iac/tofu"
   "homestak-dev/.claude"
   "homestak-dev/.github"
   "homestak-dev/meta"
+  "homestak-iac/ansible"
+  "homestak-iac/iac-driver"
+  "homestak-iac/packer"
+  "homestak-iac/tofu"
+  "homestak/bare-metal"
+  "homestak/bootstrap"
+  "homestak/config"
 )
 
 STATE="${1:-open}"
