@@ -97,7 +97,7 @@ Flag high-impact issues (restructure, refactor, schema changes) that should be i
 **Example:**
 ```
 /sprint plan "Recursive PVE Stabilization" --release 157
-/sprint plan "Config Overhaul" --issues "site-config#45, iac-driver#67, tofu#12"
+/sprint plan "Config Overhaul" --issues "config#45, iac-driver#67, tofu#12"
 ```
 
 ### init
@@ -144,10 +144,10 @@ Check prerequisites and run validation scenarios.
 
 | Prerequisite | Check | Remediation |
 |--------------|-------|-------------|
-| Node config | `site-config/nodes/{host}.yaml` exists | Run `make node-config` on host |
+| Node config | `config/nodes/{host}.yaml` exists | Run `make node-config` on host |
 | API token | Token in `secrets.yaml` for host | Run `pveum user token add`, update secrets |
-| Secrets decrypted | `secrets.yaml` exists (not `.enc` only) | Run `make decrypt` in site-config |
-| Packer images | Images in `/var/lib/vz/template/iso/` | Run `./publish.sh` or download from release |
+| Secrets decrypted | `secrets.yaml` exists (not `.enc` only) | Run `make decrypt` in config |
+| Packer images | Images in `/var/lib/vz/template/iso/` | Run `homestak images download all --publish` |
 | Nested virt | `/sys/module/kvm_intel/parameters/nested` = Y | Enable in BIOS/hypervisor |
 
 **Available Scenarios:**
@@ -193,7 +193,8 @@ Create PRs for sprint branches with proper formatting.
 > Ruleset failures are checkpoints, not obstacles to bypass.
 
 **Default behavior (no --execute):**
-1. Create PRs in affected repos (`GH_TOKEN=$HOMESTAK_BOT_TOKEN gh pr create`)
+1. Create PRs in affected repos (`GH_TOKEN=$HOMESTAK_BOT_TOKEN gh pr create --head <branch> --repo <org>/<repo>`)
+   - **Always use `--head`** to specify the source branch explicitly — `gh` infers the wrong org from CWD in multi-org workspaces
 2. **Immediately** enable auto-merge on each PR (`gh pr merge --auto --squash <pr> --repo <org>/<repo>` — default auth, NOT bot)
 3. **STOP and present PRs for human review**
 4. Output: "Awaiting human review and approval before merge."
@@ -224,7 +225,7 @@ Create PRs for sprint branches with proper formatting.
    - Testing documentation
    - Linked issues (Closes #N)
    - PR readiness checklist
-6. Create PR with conventional commit title format (`GH_TOKEN=$HOMESTAK_BOT_TOKEN gh pr create`)
+6. Create PR with conventional commit title format (`GH_TOKEN=$HOMESTAK_BOT_TOKEN gh pr create --head <branch> --repo <org>/<repo>`)
 7. **Immediately** enable auto-merge (`gh pr merge --auto --squash <pr> --repo <org>/<repo>` — default auth, NOT bot)
 8. **STOP: Present PRs and await human approval**
 9. Only if `--execute` AND human approved: merge PRs
@@ -235,7 +236,7 @@ Parse sprint issue body for:
 ## Repos
 
 - [x] bootstrap - branch created
-- [x] homestak-dev - branch created
+- [x] meta - branch created
 - [ ] ansible - not created (skip)
 ```
 
