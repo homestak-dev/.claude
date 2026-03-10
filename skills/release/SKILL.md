@@ -5,7 +5,7 @@ allowed-tools:
   - Bash(gh:*)
   - Bash(git:*)
   - Bash(gita:*)
-  - Bash(./scripts/release.sh:*)
+  - Bash(./scripts/release:*)
   - Read
   - Glob
   - Write
@@ -164,6 +164,8 @@ The skill uses `scripts/release` for automation:
 ```bash
 ./scripts/release init --version X.Y --issue N
 ./scripts/release preflight
+./scripts/release changelog --dry-run
+./scripts/release changelog --execute --yes
 ./scripts/release tag --dry-run
 ./scripts/release tag --execute
 ./scripts/release publish --execute --yes
