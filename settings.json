@@ -1,4 +1,38 @@
 {
+  "permissions": {
+    "allow": [
+      "__ Skills __",
+      "Skill(issues)",
+      "Skill(session)",
+      "Skill(sprint)",
+      "Skill(release)",
+
+      "__ Release (read-only) __",
+      "Bash(./scripts/release status *)",
+      "Bash(./scripts/release resume *)",
+      "Bash(./scripts/release audit *)",
+      "Bash(./scripts/release preflight *)",
+      "Bash(./scripts/release verify *)",
+
+      "__ Cross-repo __",
+      "Bash(gita *)",
+      "Bash(gh issue *)",
+      "Bash(gh pr create *)",
+      "Bash(gh pr list *)",
+      "Bash(gh pr view *)",
+      "Bash(GH_TOKEN=$HOMESTAK_BOT_TOKEN gh pr *)",
+
+      "__ Lint and test __",
+      "Bash(make lint)",
+      "Bash(make test)"
+    ],
+    "deny": [
+      "Bash(./scripts/release changelog --execute *)",
+      "Bash(./scripts/release tag --execute *)",
+      "Bash(./scripts/release publish --execute *)",
+      "Bash(./scripts/release full *)"
+    ]
+  },
   "statusLine": {
     "type": "command",
     "command": ".claude/statusline.sh"
