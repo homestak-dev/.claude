@@ -1,4 +1,17 @@
 {
+  "permissions": {
+    "allow": [
+      "__ Skills __",
+      "Skill(issues)",
+      "Skill(session)",
+      "Skill(sprint)",
+      "Skill(release)",
+
+      "__ Dev workflow __",
+      "Bash(./scripts/release *)",
+      "Bash(GH_TOKEN=$HOMESTAK_BOT_TOKEN gh pr *)"
+    ]
+  },
   "statusLine": {
     "type": "command",
     "command": ".claude/statusline.sh"
