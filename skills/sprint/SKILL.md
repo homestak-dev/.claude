@@ -156,14 +156,14 @@ Check prerequisites and run validation scenarios.
 | Scenario | Duration | Purpose |
 |----------|----------|---------|
 | `./run.sh manifest test -M n1-push -H <host>` | ~2 min | Quick validation (provision → boot → verify → destroy) |
-| `./run.sh manifest test -M n2-tiered -H <host>` | ~9 min | Tiered validation (PVE + nested VM) |
+| `./run.sh manifest test -M n2-push -H <host>` | ~9 min | Tiered validation (PVE + nested VM) |
 | `./run.sh manifest apply -M n1-push -H <host>` | ~1.5 min | Deploy VM only (no destroy) |
 | `./run.sh manifest destroy -M n1-push -H <host>` | ~30 sec | Destroy existing VM |
 
 **Example:**
 ```
 /sprint validate
-/sprint validate --scenario "test -M n2-tiered" --host srv2
+/sprint validate --scenario "test -M n2-push" --host srv2
 /sprint validate --prereqs-only --host srv1
 ```
 
