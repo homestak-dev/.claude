@@ -41,7 +41,7 @@ Manage sprint lifecycle with subcommands:
 /sprint implement
 /sprint validate [--scenario <name>] [--host <host>] [--prereqs-only]
 /sprint sync
-/sprint merge [--execute] [--all]
+/sprint merge
 /sprint retro
 /sprint close
 ```
@@ -248,65 +248,24 @@ Merge master into sprint branches.
 
 ### merge
 
-Create PRs for sprint branches with proper formatting.
+Create PRs for all sprint repos, enable auto-merge, and present for human review.
 
-**Inputs:**
-- `--execute`: Merge PRs after human approval (do NOT use without explicit approval)
-- `--all`: Create PRs in all repos listed in sprint issue
-
-> **⚠️ HUMAN GATE:** This command creates PRs, then STOPS for human review.
-> Do NOT use `--execute` or merge PRs without explicit human approval.
-> Ruleset failures are checkpoints, not obstacles to bypass.
-
-**Default behavior (no --execute):**
-1. Create PRs in affected repos (`GH_TOKEN=$HOMESTAK_BOT_TOKEN gh pr create --head <branch> --repo <org>/<repo>`)
-   - **Always use `--head`** to specify the source branch explicitly — `gh` infers the wrong org from CWD in multi-org workspaces
-2. **Immediately** enable auto-merge on each PR (`gh pr merge --auto --squash <pr> --repo <org>/<repo>` — default auth, NOT bot)
-3. **STOP and present PRs for human review**
-4. Output: "Awaiting human review and approval before merge."
-5. Wait for explicit user approval before proceeding
-
-**With --execute (only after human approval):**
-- Merge PRs using merge commit strategy (not squash)
-- Clean up branches after merge
-- Update sprint issue
+> **⚠️ HUMAN GATE:** This command creates PRs, then STOPS. Auto-merge completes
+> after the human approves each PR in GitHub.
 
 **Actions:**
 1. **Load context:**
    - Read `docs/process/50-merge.md` for PR requirements and checklist
    - Read `docs/standards/issues.md` for PR title format conventions
-2. If `--all`:
-   a. Fetch current sprint issue (from branch name or prompt)
-   b. Parse `## Repos` section for checked repos
-   c. For each repo with `[x]` branch created:
-      - Navigate to repo directory
-      - Run merge flow (steps 3-6 below)
-   d. Report summary of all PRs created
-3. Verify branch state (not on master, has commits ahead)
-4. Push branch if needed
-5. Generate PR body with:
-   - Summary from commits/sprint issue
-   - Type of change checkboxes
-   - Changes list
-   - Testing documentation
-   - Linked issues (Closes #N)
-   - PR readiness checklist
-6. Create PR with conventional commit title format (`GH_TOKEN=$HOMESTAK_BOT_TOKEN gh pr create --head <branch> --repo <org>/<repo>`)
-7. **Immediately** enable auto-merge (`gh pr merge --auto --squash <pr> --repo <org>/<repo>` — default auth, NOT bot)
-8. **STOP: Present PRs and await human approval**
-9. Only if `--execute` AND human approved: merge PRs
-
-**Repo detection for --all:**
-Parse sprint issue body for:
-```markdown
-## Repos
-
-- [x] bootstrap - branch created
-- [x] meta - branch created
-- [ ] ansible - not created (skip)
-```
-
-Only repos with `[x]` are included.
+2. Fetch current sprint issue, parse `## Repos` section for checked repos
+3. For each repo with `[x]` branch created:
+   a. Verify branch state (not on master, has commits ahead)
+   b. Push branch if needed
+   c. Generate PR body with summary, changes, testing, linked issues
+   d. Create PR (`GH_TOKEN=$HOMESTAK_BOT_TOKEN gh pr create --head <branch> --repo <org>/<repo>`)
+      - **Always use `--head`** — `gh` infers the wrong org from CWD in multi-org workspaces
+   e. Enable auto-merge (`gh pr merge --auto --merge <pr> --repo <org>/<repo>` — default auth, NOT bot)
+4. **STOP and present all PRs for human review**
 
 **PR Title Format:**
 - `fix(<scope>): <summary>` - Bug fixes
@@ -314,30 +273,9 @@ Only repos with `[x]` are included.
 - `docs(<scope>): <summary>` - Documentation
 - `refactor(<scope>): <summary>` - Refactoring
 
-**PR Readiness Checklist:**
-```markdown
-- [ ] Feature tested with integration test (not just unit tests)
-- [ ] External tool assumptions verified (test actual CLI behavior)
-- [ ] CHANGELOG entry in this PR
-- [ ] CLAUDE.md updated if architecture changed
-- [ ] Performance claims measured (before/after timing)
-- [ ] Prerequisites documented (configs, artifacts, permissions)
-- [ ] Integration test scenario identified
+**Example:**
 ```
-
-**Example (two-step flow):**
-```
-# Step 1: Create PRs (always do this first)
-/sprint merge --all        # Creates PRs, then STOPS for review
-
-# Step 2: After human reviews and approves PRs
-/sprint merge --all --execute  # Merges the approved PRs
-```
-
-**Never do this:**
-```
-# WRONG: Don't use --execute without prior approval
-/sprint merge --execute    # Skips human review gate
+/sprint merge        # Create PRs in all repos, enable auto-merge, await approval
 ```
 
 ### retro
@@ -421,8 +359,7 @@ After completing each phase, load the next phase's documentation before proceedi
 /sprint design             # Research, produce design artifacts, post to scope issues
 /sprint implement          # Code, test, commit, push
 /sprint validate           # Integration test on target host
-/sprint merge --all        # Create PRs, await approval
-/sprint merge --all --execute  # After approval
+/sprint merge              # Create PRs, enable auto-merge, await approval
 /sprint close              # Retro + close
 ```
 
