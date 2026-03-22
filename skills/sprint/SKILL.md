@@ -282,20 +282,37 @@ Only repos with `[x]` are included.
 
 ### close
 
-Complete sprint wrap-up.
+Complete sprint wrap-up with retrospective.
 
 **Actions:**
 1. **Load context:**
    - Read `docs/lifecycle/55-sprint-close.md` for close requirements
-2. Verify scope issues closed
-3. Prompt for retrospective
-4. Update release issue with outcomes
-5. Clean up sprint branches
-6. Close sprint issue
+2. Verify all scope issues are closed (close cross-repo issues manually if needed)
+3. **Draft retrospective** as a closing comment:
+   - What worked well (3-5 items)
+   - What could improve (3-5 items)
+   - Process notes (metrics: issues closed, PRs merged, tests passing)
+   - Follow-up items (with issue links if created)
+   - Started/Completed dates
+4. **Present retrospective draft** to user for review and additions
+5. Update sprint issue status to `complete`
+6. Post retrospective as closing comment and close sprint issue
+7. Update release issue with outcomes (if linked)
+8. Clean up sprint branches (local + remote, all repos)
+9. Save relevant lessons to memory
+
+**Retrospective depth by tier:**
+
+| Tier | Depth |
+|------|-------|
+| Simple | Skip (no sprint) |
+| Standard | 2-3 bullet points per section |
+| Complex | Full retrospective |
+| Exploratory | Full retrospective + ADR summary |
 
 **Example:**
 ```
-/sprint close
+/sprint close         # Draft retro, present for review, then close
 ```
 
 ## Phase Transitions
@@ -324,8 +341,7 @@ After completing each phase, load the next phase's documentation before proceedi
 /sprint validate
 → Read 50-merge.md
 /sprint merge
-→ Read 55-sprint-close.md
-/sprint close
+/sprint close        # Drafts retro, presents for review, closes
 ```
 
 ## Sprint Issue State
