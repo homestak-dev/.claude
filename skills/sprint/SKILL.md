@@ -59,11 +59,11 @@ Create a sprint issue, analyze dependencies, and recommend branch name.
 
 **Actions:**
 1. **Load context:**
-   - Read `docs/lifecycle/00-overview.md` for work tiers and repo dependency order
-   - Read `docs/lifecycle/10-sprint-planning.md` for workflow guidance
+   - Read `docs/process/00-overview.md` for work tiers and repo dependency order
+   - Read `docs/process/10-sprint-planning.md` for workflow guidance
    - Read `docs/templates/sprint-issue.md` for issue template
    - Read `docs/templates/doc-verification.md` for doc verification template
-   - Read `docs/ISSUE-GUIDELINES.md` for title and label conventions
+   - Read `docs/standards/issues.md` for title and label conventions
 2. Create issue with populated template
 3. Create doc verification issue using `docs/templates/doc-verification.md`:
    - Title: `Verify docs for {Theme}`
@@ -121,7 +121,7 @@ Create sprint branches in affected repos.
 
 **Actions:**
 1. **Load context:**
-   - Read `docs/lifecycle/10-sprint-planning.md` for branch workflow
+   - Read `docs/process/10-sprint-planning.md` for branch workflow
 2. Fetch sprint issue if given number
 3. Parse metadata for repos
 4. Create branch in each repo
@@ -140,7 +140,7 @@ Produce design artifacts for scope issues.
 
 **Actions:**
 1. **Load context:**
-   - Read `docs/lifecycle/20-design.md` for design guidelines
+   - Read `docs/process/20-design.md` for design guidelines
    - Read sprint issue for scope and implementation order
 2. For each scope issue (in implementation order):
    - Read the issue's acceptance criteria and constraints
@@ -171,7 +171,7 @@ Execute implementation across scope issues.
 
 **Actions:**
 1. **Load context:**
-   - Read `docs/lifecycle/30-implementation.md` for implementation guidelines
+   - Read `docs/process/30-implementation.md` for implementation guidelines
    - Read sprint issue for scope and implementation order
 2. For each scope issue (in implementation order):
    - Read the design comment on the issue
@@ -199,7 +199,7 @@ Check prerequisites and run validation scenarios.
 
 **Actions:**
 1. **Load context:**
-   - Read `docs/lifecycle/40-validation.md` for validation requirements
+   - Read `docs/process/40-validation.md` for validation requirements
 2. Check prerequisites for target host
 3. If prereqs fail, report issues and remediation
 4. Run iac-driver test: `./run.sh manifest test -M <name> -H <host> --verbose`
@@ -273,8 +273,8 @@ Create PRs for sprint branches with proper formatting.
 
 **Actions:**
 1. **Load context:**
-   - Read `docs/lifecycle/50-merge.md` for PR requirements and checklist
-   - Read `docs/ISSUE-GUIDELINES.md` for PR title format conventions
+   - Read `docs/process/50-merge.md` for PR requirements and checklist
+   - Read `docs/standards/issues.md` for PR title format conventions
 2. If `--all`:
    a. Fetch current sprint issue (from branch name or prompt)
    b. Parse `## Repos` section for checked repos
@@ -346,7 +346,7 @@ Draft retrospective without closing the sprint.
 
 **Actions:**
 1. **Load context:**
-   - Read `docs/lifecycle/55-sprint-close.md` for retrospective format
+   - Read `docs/process/55-sprint-close.md` for retrospective format
 2. Review sprint issue: scope delivered, validation results, deviations
 3. Draft retrospective:
    - What worked well
@@ -370,7 +370,7 @@ Complete sprint wrap-up with retrospective.
 
 **Actions:**
 1. **Load context:**
-   - Read `docs/lifecycle/55-sprint-close.md` for close requirements
+   - Read `docs/process/55-sprint-close.md` for close requirements
 2. Verify all scope issues are closed (close cross-repo issues manually if needed)
 3. **Draft retrospective** as a closing comment:
    - What worked well (3-5 items)
@@ -405,12 +405,12 @@ After completing each phase, load the next phase's documentation before proceedi
 
 | After | Before Starting | Load |
 |-------|-----------------|------|
-| `plan` | Design | `docs/lifecycle/20-design.md` |
-| `init` | Design | `docs/lifecycle/20-design.md` |
-| Design approved | Implementation | `docs/lifecycle/30-implementation.md` |
-| Implementation done | Validation | `docs/lifecycle/40-validation.md` |
-| `validate` passed | Merge | `docs/lifecycle/50-merge.md` |
-| `merge` complete | Close | `docs/lifecycle/55-sprint-close.md` |
+| `plan` | Design | `docs/process/20-design.md` |
+| `init` | Design | `docs/process/20-design.md` |
+| Design approved | Implementation | `docs/process/30-implementation.md` |
+| Implementation done | Validation | `docs/process/40-validation.md` |
+| `validate` passed | Merge | `docs/process/50-merge.md` |
+| `merge` complete | Close | `docs/process/55-sprint-close.md` |
 
 **Process discipline:** Always read the phase doc before starting that phase. This ensures process requirements are fresh in context.
 
@@ -438,9 +438,9 @@ The sprint issue IS the state. Key sections:
 
 ## Related Documents
 
-- [ISSUE-GUIDELINES.md](docs/ISSUE-GUIDELINES.md)
-- [10-sprint-planning.md](docs/lifecycle/10-sprint-planning.md)
-- [40-validation.md](docs/lifecycle/40-validation.md)
-- [50-merge.md](docs/lifecycle/50-merge.md)
-- [55-sprint-close.md](docs/lifecycle/55-sprint-close.md)
+- [issues.md](docs/standards/issues.md)
+- [10-sprint-planning.md](docs/process/10-sprint-planning.md)
+- [40-validation.md](docs/process/40-validation.md)
+- [50-merge.md](docs/process/50-merge.md)
+- [55-sprint-close.md](docs/process/55-sprint-close.md)
 - [sprint-issue.md](docs/templates/sprint-issue.md)
