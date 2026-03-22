@@ -56,10 +56,15 @@ Create a sprint issue, analyze dependencies, and recommend branch name.
    - Read `docs/lifecycle/00-overview.md` for work tiers and repo dependency order
    - Read `docs/lifecycle/10-sprint-planning.md` for workflow guidance
    - Read `docs/templates/sprint-issue.md` for issue template
+   - Read `docs/templates/doc-verification.md` for doc verification template
    - Read `docs/ISSUE-GUIDELINES.md` for title and label conventions
 2. Create issue with populated template
-3. Recommend branch name: `sprint/{theme-kebab}`
-4. If scope issues provided:
+3. Create doc verification issue using `docs/templates/doc-verification.md`:
+   - Title: `Verify docs for {Theme}`
+   - Populate "Concepts Changed" table based on scope issues
+   - Include grep commands for old names
+4. Recommend branch name: `sprint/{theme-kebab}`
+5. If scope issues provided:
    - Analyze cross-repo dependencies
    - Detect file conflicts
    - Recommend implementation sequence
