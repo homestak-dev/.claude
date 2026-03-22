@@ -1,6 +1,6 @@
 ---
 name: sprint
-description: Sprint lifecycle management - plan, init, validate, sync, merge, close. Use for multi-issue work requiring coordination.
+description: Sprint lifecycle management - plan, init, design, implement, validate, sync, merge, retro, close. Use for multi-issue work requiring coordination.
 allowed-tools:
   - Bash(gh:*)
   - Bash(git:*)
@@ -24,19 +24,25 @@ allowed-tools:
 Manage sprint lifecycle with subcommands:
 - `plan` - Create sprint issue, analyze dependencies and conflicts
 - `init` - Create branches in repos
+- `design` - Produce design artifacts for scope issues
+- `implement` - Execute implementation across scope issues
 - `validate` - Check prerequisites and run validation scenarios
 - `sync` - Merge master → sprint branches
 - `merge` - Create PRs with proper formatting
-- `close` - Retrospective, update release, cleanup
+- `retro` - Draft retrospective (standalone, without closing)
+- `close` - Retrospective, cleanup, and close
 
 ## Usage
 
 ```
 /sprint plan <theme> [--release #N]
 /sprint init [branch-name|issue#]
+/sprint design
+/sprint implement
 /sprint validate [--scenario <name>] [--host <host>] [--prereqs-only]
 /sprint sync
 /sprint merge [--execute] [--all]
+/sprint retro
 /sprint close
 ```
 
@@ -126,6 +132,60 @@ Create sprint branches in affected repos.
 ```
 /sprint init sprint/recursive-pve
 /sprint init   # Uses branch from current sprint issue
+```
+
+### design
+
+Produce design artifacts for scope issues.
+
+**Actions:**
+1. **Load context:**
+   - Read `docs/lifecycle/20-design.md` for design guidelines
+   - Read sprint issue for scope and implementation order
+2. For each scope issue (in implementation order):
+   - Read the issue's acceptance criteria and constraints
+   - Research relevant code (read files, grep for patterns)
+   - Determine design depth by tier (skip for Simple, lightweight for Standard, full for Complex)
+3. **Post design comment on each scope issue** (not just the sprint issue)
+   - Include: current state, proposed changes, risks, alternatives considered
+4. Present designs to user for approval
+5. **STOP and wait for explicit design approval** before proceeding to implementation
+
+**Design depth by tier:**
+
+| Tier | Design Depth |
+|------|-------------|
+| Simple | Skip — proceed to implementation |
+| Standard | Lightweight — brief approach summary on scope issue |
+| Complex | Full — problem statement, solution, interfaces, risks on scope issue |
+| Exploratory | Full + ADR |
+
+**Example:**
+```
+/sprint design
+```
+
+### implement
+
+Execute implementation across scope issues.
+
+**Actions:**
+1. **Load context:**
+   - Read `docs/lifecycle/30-implementation.md` for implementation guidelines
+   - Read sprint issue for scope and implementation order
+2. For each scope issue (in implementation order):
+   - Read the design comment on the issue
+   - Implement changes on sprint branch
+   - Run `make test` and `make lint` in affected repos
+   - Update scope issue status in sprint issue
+   - Post test results to scope issue
+3. Add CHANGELOG entries in the same commits as code changes
+4. Commit with conventional commit format, push to sprint branch
+5. Present implementation summary for human review
+
+**Example:**
+```
+/sprint implement
 ```
 
 ### validate
@@ -280,6 +340,30 @@ Only repos with `[x]` are included.
 /sprint merge --execute    # Skips human review gate
 ```
 
+### retro
+
+Draft retrospective without closing the sprint.
+
+**Actions:**
+1. **Load context:**
+   - Read `docs/lifecycle/55-sprint-close.md` for retrospective format
+2. Review sprint issue: scope delivered, validation results, deviations
+3. Draft retrospective:
+   - What worked well
+   - What could improve
+   - Process notes (metrics)
+   - Follow-up items
+4. **Present draft** to user for review and additions
+5. Do NOT close the sprint issue — user decides when to close
+
+**Use when:** You want to review the retrospective before committing to close, or want to draft it in one session and close in another.
+
+**Example:**
+```
+/sprint retro          # Draft retro, present for review
+/sprint close          # Post retro and close (when ready)
+```
+
 ### close
 
 Complete sprint wrap-up with retrospective.
@@ -332,16 +416,14 @@ After completing each phase, load the next phase's documentation before proceedi
 
 **Example workflow:**
 ```
-/sprint init 163
-→ Read 20-design.md
-→ Complete design, get approval
-→ Read 30-implementation.md
-→ Implement changes
-→ Read 40-validation.md
-/sprint validate
-→ Read 50-merge.md
-/sprint merge
-/sprint close        # Drafts retro, presents for review, closes
+/sprint plan "Theme" --issues repo#1,repo#2
+/sprint init
+/sprint design             # Research, produce design artifacts, post to scope issues
+/sprint implement          # Code, test, commit, push
+/sprint validate           # Integration test on target host
+/sprint merge --all        # Create PRs, await approval
+/sprint merge --all --execute  # After approval
+/sprint close              # Retro + close
 ```
 
 ## Sprint Issue State
