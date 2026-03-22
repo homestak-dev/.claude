@@ -41,7 +41,7 @@ Capture session state before compaction or ending work.
 
 **Actions:**
 1. **Load context:**
-   - Read `docs/lifecycle/05-session-management.md` for tier-based save strategies
+   - Read `docs/process/05-session-management.md` for tier-based save strategies
 2. Resolve target issue:
    - If `--to` specified, use that target
    - If sprint branch active, default to sprint issue
@@ -82,7 +82,7 @@ Load session state when starting a new session.
 
 **Actions:**
 1. **Load context:**
-   - Read `docs/lifecycle/05-session-management.md` for resume strategies
+   - Read `docs/process/05-session-management.md` for resume strategies
 2. Find sprint/work issue
 3. Parse metadata (branch, repos, status)
 4. Read handoff section or recent comments
@@ -104,7 +104,7 @@ Mid-session save without ending session.
 
 **Actions:**
 1. **Load context:**
-   - Read `docs/lifecycle/05-session-management.md` for checkpoint guidance
+   - Read `docs/process/05-session-management.md` for checkpoint guidance
 2. Resolve target issue (same logic as `save`)
 3. Update sprint log with progress
 4. Save incremental handoff
@@ -208,5 +208,5 @@ When `--to` is not specified, the target is inferred:
 
 ## Related Documents
 
-- [05-session-management.md](docs/lifecycle/05-session-management.md)
+- [05-session-management.md](docs/process/05-session-management.md)
 - [sprint-issue.md](docs/templates/sprint-issue.md)

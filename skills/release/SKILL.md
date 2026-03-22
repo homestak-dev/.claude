@@ -41,7 +41,7 @@ Create a release issue early with theme.
 
 **Actions:**
 1. **Load context:**
-   - Read `docs/lifecycle/60-release.md` for release overview and guidelines
+   - Read `docs/process/60-release.md` for release overview and guidelines
    - Read `docs/templates/release-issue.md` for issue template
 2. Determine next version number
 3. Create issue with template and theme
@@ -59,7 +59,7 @@ Update release issue with completed sprint outcomes.
 
 **Actions:**
 1. **Load context:**
-   - Read `docs/lifecycle/60-release.md` for release guidelines
+   - Read `docs/process/60-release.md` for release guidelines
 2. Find open release issue
 3. Identify completed sprints (closed, linked)
 4. Update "Completed Sprints" section
@@ -79,20 +79,20 @@ Run release phases with human gates.
 
 **Actions:**
 1. **Load context:**
-   - Read `docs/lifecycle/60-release.md` for release overview
+   - Read `docs/process/60-release.md` for release overview
    - Read phase files as each phase begins:
-     - `docs/lifecycle/61-release-preflight.md` for Phase 61
-     - `docs/lifecycle/62-release-changelog.md` for Phase 62
-     - `docs/lifecycle/63-release-tag.md` for Phase 63 (GATE)
-     - `docs/lifecycle/64-release-packer.md` for Phase 64
-     - `docs/lifecycle/65-release-publish.md` for Phase 65 (GATE)
-     - `docs/lifecycle/66-release-verify.md` for Phase 66
-     - `docs/lifecycle/67-release-housekeeping.md` for Phase 67
-     - `docs/lifecycle/68-release-aar.md` for Phase 68
-     - `docs/lifecycle/69-release-retro.md` for Phase 69
+     - `docs/process/61-release-preflight.md` for Phase 61
+     - `docs/process/62-release-changelog.md` for Phase 62
+     - `docs/process/63-release-tag.md` for Phase 63 (GATE)
+     - `docs/process/64-release-packer.md` for Phase 64
+     - `docs/process/65-release-publish.md` for Phase 65 (GATE)
+     - `docs/process/66-release-verify.md` for Phase 66
+     - `docs/process/67-release-housekeeping.md` for Phase 67
+     - `docs/process/68-release-aar.md` for Phase 68
+     - `docs/process/69-release-retro.md` for Phase 69
      - `docs/templates/aar.md` for AAR template
      - `docs/templates/retrospective.md` for Retrospective template
-     - `docs/lifecycle/75-lessons-learned.md` for existing lessons context
+     - `docs/process/75-lessons-learned.md` for existing lessons context
 2. Execute phases in order:
    - Phase 61: Preflight checks
    - Phase 62: CHANGELOG updates
@@ -112,14 +112,14 @@ Run release phases with human gates.
 
 #### Phase 67: Housekeeping
 
-- Read `docs/lifecycle/67-release-housekeeping.md`
+- Read `docs/process/67-release-housekeeping.md`
 - Delete merged local branches across all repos
 - Prune stale remote tracking refs (`git remote prune origin`)
 - Check release count, prompt for sunset if >5
 
 #### Phase 68: AAR
 
-- Read `docs/lifecycle/68-release-aar.md` and `docs/templates/aar.md`
+- Read `docs/process/68-release-aar.md` and `docs/templates/aar.md`
 - Draft AAR from release execution data:
   - Delivered items (from release issue scope)
   - Deviations from plan
@@ -131,7 +131,7 @@ Run release phases with human gates.
 
 #### Phase 69: Retrospective
 
-- Read `docs/lifecycle/69-release-retro.md`, `docs/templates/retrospective.md`, and `docs/lifecycle/75-lessons-learned.md`
+- Read `docs/process/69-release-retro.md`, `docs/templates/retrospective.md`, and `docs/process/75-lessons-learned.md`
 - Review release issue, sprint issues, and AAR
 - Draft retrospective using template:
   - What worked well / what could improve
@@ -140,7 +140,7 @@ Run release phases with human gates.
   - Lessons learned
 - Present draft to user for review and additions
 - Post as comment on release issue
-- Update `docs/lifecycle/75-lessons-learned.md` with new lessons under version heading
+- Update `docs/process/75-lessons-learned.md` with new lessons under version heading
 - Commit: `docs: Update 75-lessons-learned.md with vX.Y lessons`
 - Prompt user: "Retrospective posted. When ready, run `/release close` to close the release issue."
 
@@ -207,17 +207,17 @@ The release issue tracks:
 
 ## Related Documents
 
-- [60-release.md](docs/lifecycle/60-release.md)
-- [61-release-preflight.md](docs/lifecycle/61-release-preflight.md)
-- [62-release-changelog.md](docs/lifecycle/62-release-changelog.md)
-- [63-release-tag.md](docs/lifecycle/63-release-tag.md)
-- [64-release-packer.md](docs/lifecycle/64-release-packer.md)
-- [65-release-publish.md](docs/lifecycle/65-release-publish.md)
-- [66-release-verify.md](docs/lifecycle/66-release-verify.md)
-- [67-release-housekeeping.md](docs/lifecycle/67-release-housekeeping.md)
-- [68-release-aar.md](docs/lifecycle/68-release-aar.md)
-- [69-release-retro.md](docs/lifecycle/69-release-retro.md)
-- [75-lessons-learned.md](docs/lifecycle/75-lessons-learned.md)
+- [60-release.md](docs/process/60-release.md)
+- [61-release-preflight.md](docs/process/61-release-preflight.md)
+- [62-release-changelog.md](docs/process/62-release-changelog.md)
+- [63-release-tag.md](docs/process/63-release-tag.md)
+- [64-release-packer.md](docs/process/64-release-packer.md)
+- [65-release-publish.md](docs/process/65-release-publish.md)
+- [66-release-verify.md](docs/process/66-release-verify.md)
+- [67-release-housekeeping.md](docs/process/67-release-housekeeping.md)
+- [68-release-aar.md](docs/process/68-release-aar.md)
+- [69-release-retro.md](docs/process/69-release-retro.md)
+- [75-lessons-learned.md](docs/process/75-lessons-learned.md)
 - [release-issue.md](docs/templates/release-issue.md)
 - [aar.md](docs/templates/aar.md)
 - [retrospective.md](docs/templates/retrospective.md)
