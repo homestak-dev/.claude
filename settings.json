@@ -14,6 +14,16 @@
       "Bash(./scripts/release preflight *)",
       "Bash(./scripts/release verify *)",
 
+      "__ Release (execute, human-gated) __",
+      "Bash(./scripts/release init *)",
+      "Bash(./scripts/release validate *)",
+      "Bash(./scripts/release changelog *)",
+      "Bash(./scripts/release tag *)",
+      "Bash(./scripts/release publish *)",
+      "Bash(./scripts/release packer *)",
+      "Bash(./scripts/release retrospective *)",
+      "Bash(./scripts/release close *)",
+
       "__ Cross-repo __",
       "Bash(gita *)",
       "Bash(gh issue *)",
@@ -27,9 +37,6 @@
       "Bash(make test)"
     ],
     "deny": [
-      "Bash(./scripts/release changelog --execute *)",
-      "Bash(./scripts/release tag --execute *)",
-      "Bash(./scripts/release publish --execute *)",
       "Bash(./scripts/release full *)"
     ]
   },
